@@ -1,0 +1,17 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity concatenate is 
+port(
+	inp1, inp2 : in std_logic_vector(7 downto 0);
+	output : out std_logic_vector(15 downto 0)
+	);
+end entity concatenate;
+
+architecture behav of concatenate is
+ begin 
+	output(15 downto 8) <= inp2;
+	output(7 downto 0) <= inp1;
+	end architecture behav;
+ 

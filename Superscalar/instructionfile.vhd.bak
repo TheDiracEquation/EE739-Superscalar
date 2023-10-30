@@ -1,0 +1,114 @@
+-- THIS COMPONENT JUST SORTS OUT THE DIFFERENT PARTS OF
+-- AN INSTRUCTION FOR EASE OF DISPATCH IN THE NEXT STAGE
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity stage2 is
+ 
+	port(
+		clk,rst : in std_logic;
+		pcin : in std_logic_vector(15 downto 0);
+		
+		insinp1 : in std_logic_vector(15 downto 0);
+		insinp2 : in std_logic_vector(15 downto 0);
+
+		opc1 : out std_logic_vector(3 downto 0);
+		opc2 : out std_logic_vector(3 downto 0);
+		
+		opra1 : out std_logic_vector(2 downto 0);
+		opra2 : out std_logic_vector(2 downto 0);
+		
+		oprb2 : out std_logic_vector(2 downto 0);
+		oprb2 : out std_logic_vector(2 downto 0);
+		
+		oprc1 : out std_logic_vector(2 downto 0);
+		oprc2 : out std_logic_vector(2 downto 0);
+		
+		imm6one : out std_logic_vector(5 downto 0);
+		imm6two: out std_logic_vector(5 downto 0);
+		
+		imm9one : out std_logic_vector(8 downto 0);
+		imm9two : out std_logic_vector(8 downto 0);
+		
+		cz1 : out std_logic_vector(1 downto 0);
+		cz2 : out std_logic_vector(1 downto 0);
+		
+		complement1 : out std_logic;	
+		complement2 : out std_logic;
+		
+		pcout : out std_logic_vector(15 downto 0);
+		controlsigout :  out std_logic_vector(7 downto 0)
+	);
+end entity;
+
+architecture stage2arch of stage2 is
+
+	component extendimm6 is
+	port(input: in std_logic_vector(5 downto 0);
+	     output: out std_logic_vector(15 downto 0));
+   end component;
+
+   component extendimm9 is
+	port(input: in std_logic_vector(8 downto 0);
+		  output: out std_logic_vector(15 downto 0));
+   end component;
+		  
+	component zeroextend is
+	port(input: in std_logic_vector(8 downto 0);
+		  output: out std_logic_vector(15 downto 0));
+        end component;
+		  
+	component control is
+	port(
+			opcode: in std_logic_vector(3 downto 0);
+			enabler: out std_logic_vector(7 downto 0));
+		end component;
+	
+	signal ext9imm,ext6imm, extzero: std_logic_vector(15 downto 0);
+	signal controlsig : std_logic_vector(7 downto 0);
+	
+begin
+	extend9imm : extendimm9 port map(input => IRip(8 downto 0), output => ext9imm);-- extending 9 bit immediate to 15 bits
+	extend6imm : extendimm6 port map(input => IRip(5 downto 0), output => ext6imm);-- extending 6 bit immediate to 15 bits
+	extendzero : zeroextend port map(input => IRip(8 downto 0), output => extzero);-- Extends the 9 bit immediate to 15 bit by putting zeros on left (disregarding sign)
+	controller: control port map(opcode => IRip(15 downto 12), enabler => controlsig);-- Gives control signals for the instruction	
+	
+	decodeprocess: process(IRip,pcin,extzero,ext6imm,ext9imm)
+	
+	begin
+	
+	opc1 <= insinp1(15 downto 12);
+	opc2 <= insinp1(15 downto 12);
+	
+	opra1 <= insinp1(11 downto 9);
+	opra2 <= insinp1(11 downto 9);
+	
+	oprb1 <= insinp1(11 downto 9);
+	oprb2 <= insinp1(11 downto 9);
+	
+	oprc1 <= insinp1(11 downto 9);
+	oprc2 <= insinp1(11 downto 9);
+	
+	IR11_9 <= IRip(11 downto 9);
+	IR8_6 <= IRip(8 downto 6);
+	IR5_3 <= IRip(5 downto 3);
+	IR1_0 <= IRip(1 downto 0); 
+	pcout <= pcin;
+	IR_c <= IRip(2);
+	
+	if(IRip(15 downto 12)="0011") then
+		IR8_0 <= extzero;
+		IR5_0 <= ext6imm;
+	else 
+		IR8_0 <= ext9imm;
+		IR5_0 <= ext6imm;
+	
+	end if;
+end process;
+controlsigout <= controlsig;
+end stage2arch;
+
+		
+		

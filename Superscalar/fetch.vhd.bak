@@ -1,0 +1,33 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity fetch is
+	port (
+				clk, reset: in std_logic;
+				pc: in std_logic_vector(15 downto 0);
+				instr1, instr2, pc_next: out std_logic_vector(15 downto 0)
+			);
+end entity;
+
+architecture stage1 of fetch is 
+			-- To fetch 7 bit instructions from the intruction memory
+			component instrucmem is
+				 port(
+					  mem_A : in std_logic_vector(15 downto 0);
+
+					  instruction1, instruction2 : out std_logic_vector(7 downto 0));
+				 
+			end component;
+			
+			-- To increment the PC by 4 every cycle to fetch 2 instructions
+			component pcincrement is 
+			port(
+				PCin : in std_logic_vector(15 downto 0);
+				PCout : out std_logic_vector(15 downto 0)
+				);
+			end component;
+			
+			
+			
+		
