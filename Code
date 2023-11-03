@@ -1,1 +1,139 @@
+-- THIS COMPONENT JUST SORTS OUT THE DIFFERENT PARTS OF
+-- AN INSTRUCTION FOR EASE OF DISPATCH IN THE NEXT STAGE
 
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity stage2 is
+ 
+	port(
+		clk,rst : in std_logic;
+		pcin1 : in std_logic_vector(15 downto 0); -- input PC
+		pcin2 : in std_logic_vector(15 downto 0);
+		
+		insinp1 : in std_logic_vector(15 downto 0);
+		insinp2 : in std_logic_vector(15 downto 0);
+
+		opco1 : out std_logic_vector(3 downto 0);
+		opco2 : out std_logic_vector(3 downto 0);
+		
+		opra1 : out std_logic_vector(2 downto 0);
+		opra2 : out std_logic_vector(2 downto 0);
+		
+		oprb1 : out std_logic_vector(2 downto 0);
+		oprb2 : out std_logic_vector(2 downto 0);
+		
+		oprc1 : out std_logic_vector(2 downto 0);
+		oprc2 : out std_logic_vector(2 downto 0);
+		
+		imm6one : out std_logic_vector(5 downto 0);
+		imm6two: out std_logic_vector(5 downto 0);
+		
+		imm9one : out std_logic_vector(8 downto 0);
+		imm9two : out std_logic_vector(8 downto 0);
+		
+		cz1 : out std_logic_vector(1 downto 0);
+		cz2 : out std_logic_vector(1 downto 0);
+		
+		complement1 : out std_logic;	
+		complement2 : out std_logic;
+		
+		pcout1 : out std_logic_vector(15 downto 0);
+		pcout2 : out std_logic_vector(15 downto 0);
+		
+		controlout1 :  out std_logic_vector(7 downto 0);
+		controlout2 : out std_logic_vector(7 downto 0)
+	);
+end entity;
+
+architecture stage2arch of stage2 is
+
+	component extendimm6 is
+	port(input: in std_logic_vector(5 downto 0);
+	     output: out std_logic_vector(15 downto 0));
+   end component;
+
+   component extendimm9 is
+	port(input: in std_logic_vector(8 downto 0);
+		  output: out std_logic_vector(15 downto 0));
+   end component;
+		  
+	component zeroextend is
+	port(input: in std_logic_vector(8 downto 0);
+		  output: out std_logic_vector(15 downto 0));
+        end component;
+		  
+	component control is
+	port(
+			opcode: in std_logic_vector(3 downto 0);
+			enabler: out std_logic_vector(7 downto 0));
+		end component;
+	
+	signal ext9imm1,ext9imm2, ext6imm1,ext6imm2, extzero1,extzero2: std_logic_vector(15 downto 0);
+
+	
+begin
+	extend9imm1 : extendimm9 port map(input => insinp1(8 downto 0), output => ext9imm1);-- extending 9 bit immediate to 15 bits
+	extend6imm1 : extendimm6 port map(input => insinp1(5 downto 0), output => ext6imm1);-- extending 6 bit immediate to 15 bits
+	extendzero1 : zeroextend port map(input => insinp1(8 downto 0), output => extzero1);-- Extends the 9 bit immediate to 15 bit by putting zeros on left (disregarding sign)
+	
+	extend9imm2 : extendimm9 port map(input => insinp2(8 downto 0), output => ext9imm2);-- extending 9 bit immediate to 15 bits
+	extend6imm2 : extendimm6 port map(input => insinp2(5 downto 0), output => ext6imm2);-- extending 6 bit immediate to 15 bits
+	extendzero2 : zeroextend port map(input => insinp2(8 downto 0), output => extzero2);-- Extends the 9 bit immediate to 15 bit by putting zeros on left (disregarding sign)
+	
+	controller1 : control port map(opcode => insinp1(15 downto 12), enabler => controlout1);-- Gives control signals for the instruction	
+	controller2 : control port map(opcode => insinp2(15 downto 12), enabler => controlout2);-- Gives control signals for the instruction	
+	
+	decodeprocess: process(insinp1,insinp2,pcin1,pcin2,extzero1,extzero2,ext6imm1,ext6imm2,ext9imm1,ext9imm2)
+	
+	begin
+	
+	opco1 <= insinp1(15 downto 12);
+	opco2 <= insinp2(15 downto 12);
+	
+	opra1 <= insinp1(11 downto 9);
+	opra2 <= insinp2(11 downto 9);
+	
+	oprb1 <= insinp1(8 downto 6);
+	oprb2 <= insinp2(8 downto 6);
+	
+	oprc1 <= insinp1(5 downto 3);
+	oprc2 <= insinp2(5 downto 3);
+
+	cz1 <= insinp1(1 downto 0); 
+	cz2 <= insinp2(1 downto 0);
+	
+	complement1 <= insinp1(2);
+	complement2 <= insinp2(2);
+
+	pcout1 <= pcin1;
+	pcout2 <= pcin2;
+	
+	
+	
+	if(insinp1(15 downto 12)="0011") then
+		imm9one <= extzero1;
+		imm6one <= ext6imm1;
+	else 
+		imm9one <= ext9imm1;
+		imm6one <= ext6imm1;
+	
+	end if;
+	
+	if(insinp2(15 downto 12)="0011") then
+		imm9two <= extzero2;
+		imm6two <= ext6imm2;
+	else 
+		imm9two <= ext9imm2;
+		imm6two <= ext6imm2;
+	
+	end if;
+	
+end process;
+
+
+end stage2arch;
+
+		
+		

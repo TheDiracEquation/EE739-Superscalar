@@ -22,24 +22,6 @@ architecture asliRF of ARF is
 	signal R6 : std_logic_vector(15 downto 0);
 	signal R7 : std_logic_vector(15 downto 0);
 
-	signal tag0 : std_logic_vector(4 downto 0);
-	signal tag1 : std_logic_vector(4 downto 0);
-	signal tag2 : std_logic_vector(4 downto 0);
-	signal tag3 : std_logic_vector(4 downto 0);
-	signal tag4 : std_logic_vector(4 downto 0);
-	signal tag5 : std_logic_vector(4 downto 0);
-	signal tag6 : std_logic_vector(4 downto 0);
-	signal tag7 : std_logic_vector(4 downto 0);
-
-	signal busy0 : std_logic;
-	signal busy1 : std_logic;
-	signal busy2 : std_logic;
-	signal busy3 : std_logic;
-	signal busy4 : std_logic;
-	signal busy5 : std_logic;
-	signal busy6 : std_logic;
-	signal busy7 : std_logic;
-
 
 begin
 	read_proc : process(opra1, oprb1, opra2, oprb2,reading )
