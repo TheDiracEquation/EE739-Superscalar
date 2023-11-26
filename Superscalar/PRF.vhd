@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 
 entity PRF is
 	port(
-	opra1, oprb1, opra2,oprb2, writeadd: in std_logic_vector(2 downto 0);
+	opra1, oprb1, opra2,oprb2, writeadd: in std_logic_vector(2 downto 0); -- Input operands from the decode
     datain : in std_logic_vector(15 downto 0);
 	clk , rst  : in std_logic;
 	rsvalid1,rsvalid2,rsvalid3,rsvalid4 : out std_logic;
@@ -14,26 +14,27 @@ entity PRF is
 	);
 
 architecture
-	type arf_data_type is array((integer'(2)**3)-1 downto 0) of std_logic_vector(15 downto 0);
-    type arf_busy_type is array((integer'(2)**3)-1 downto 0) of std_logic;
-    type arf_tag_type is array((integer'(2)**3)-1 downto 0) of std_logic_vector(7 downto 0);
+	type arf_data_type is array((integer'(2)**3)-1 downto 0) of std_logic_vector(15 downto 0); -- Creates a data type for the ARF
+    type arf_busy_type is array((integer'(2)**3)-1 downto 0) of std_logic; -- Creates a data type for the ARF busy bits
+    type arf_tag_type is array((integer'(2)**3)-1 downto 0) of std_logic_vector(7 downto 0);-- Creates a data type for the ARF tags
 
-    type rrf_data_type is array((integer'(2)**6)-1 downto 0) of std_logic_vector(15 downto 0);
-    type rrf_valid_type is array((integer'(2)**6)-1 downto 0) of std_logic;
-    type rrf_busy_type is array((integer'(2)**6)-1 downto 0) of std_logic;
+    type rrf_data_type is array((integer'(2)**6)-1 downto 0) of std_logic_vector(15 downto 0); -- Creates a data type for the RRF
+    type rrf_valid_type is array((integer'(2)**6)-1 downto 0) of std_logic; -- Creates a data type for the RRF valid bit
+    type rrf_busy_type is array((integer'(2)**6)-1 downto 0) of std_logic; -- Creates a data type for the RRF busy bit
 
-    type cz_renamer is array((integer'(2)**6)-1 downto 0) of std_logic;
+    type cz_renamer is array((integer'(2)**6)-1 downto 0) of std_logic_vector(1 downto 0); -- Creates a data type for the CZ bits
+    type cz_busy is array ((integer'(2)**6)-1 downto 0) of std_logic_vector(1 downto 0);
 
-    signal carry : cz_renamer;
-    signal zero : cz_renamer;
+    signal carry : cz_renamer; -- 64 bit renamed single bit carry
+    signal zero : cz_renamer; -- 64 bit renamed single bit carry
 
-    signal rrf_data: rrf_data_type;
-    signal rrf_valid: rrf_valid_type;
-    signal rrf_busy: rrf_busy_type;
+    signal rrf_data: rrf_data_type; -- 16 bit RRF with 64 registers 
+    signal rrf_valid: rrf_valid_type; -- single bit 64 wide RRF valid 
+    signal rrf_busy: rrf_busy_type; -- single bit 64 wide RRF busy 
 
-    signal arf_data: arf_data_type;
-    signal arf_busy: arf_busy_type;
-    signal arf_tag: arf_tag_type;
+    signal arf_data: arf_data_type; -- 16 bit RRF with 8 registers
+    signal arf_busy: arf_busy_type; -- single bit 8 wide ARF busy 
+    signal arf_tag: arf_tag_type; -- 6 bit tag values for 8 registers , pointing to 64 wide RRF
 
     signal instr1val1, data_out_sig_2, data_out_sig_3, data_out_sig_4: std_logic_vector(15 downto 0);
     signal data_tag_out_2, data_tag_out_3, data_tag_out_4: std_logic;
