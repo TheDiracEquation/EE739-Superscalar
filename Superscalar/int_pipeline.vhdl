@@ -22,8 +22,12 @@ architecture behavioural of int_pipeline is
     end component;
 
     component alu is
-        port(
-        );
+      port(
+    alu_a, alu_b : in std_logic_vector(15 downto 0);
+    c_in : in std_logic;
+    alu_sel : in std_logic_vector(1 downto 0); --01 add without carry, 10 add with carry, 11 nand
+    alu_out : out std_logic_vector(15 downto 0);
+    c_out, z_out : out std_logic);
     end component;
 
 begin
