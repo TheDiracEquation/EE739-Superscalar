@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity int_pipeline is 
     port(
-        controlbits: in std_logic_vector(5 downto 0);
+        controlbits: in std_logic_vector(5 downto 0); --controlbits from control store component for alu operations
         ra_data, rb_data, pc_in: in std_logic_vector(15 downto 0);
         imm_data: in std_logic_vector(5 downto 0);
         c_in, z_in: in std_logic;
@@ -21,7 +21,7 @@ architecture behavioural of aluexecpipe is
         );
     end component;
 
-    component alu us
+    component alu is
         port(
         );
     end component;
@@ -50,7 +50,7 @@ end process;
 
 proc3 : process()
 begin
-    if(control=add+nand) then
+    if(control=add+nand) then --have to add contol signals
         z_out <= alu_zout;
     else
         z_out <= z_in;
