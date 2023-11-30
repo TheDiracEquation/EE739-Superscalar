@@ -12,9 +12,9 @@ entity int_pipeline is
     );
 end entity;
 
-architecture behavioural of aluexecpipe is
+architecture behavioural of int_pipeline is
     signal imm_ext, alu_b: std_logic_vector(15 downto 0) := (others => '0');
-    signal alu_cout, z_sig, alu_zout: std_logic := '0';
+    signal alu_cout, z_sig, alu_zout: std_logic;
     
     component extender is
         port (
