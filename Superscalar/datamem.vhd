@@ -9,7 +9,7 @@ entity datamem is
     port(
         address : in std_logic_vector(15 downto 0);
         writedata : in std_logic_vector(15 downto 0);
-        writing, reading, clk, rst : in std_logic;
+        writing, clk, rst : in std_logic;
         readval : out std_logic_vector(15 downto 0));
     
 end entity;
@@ -22,7 +22,6 @@ architecture behav of datamem is
 signal data : data_array := (others => "0000000000000000");
 
 begin 
-if(reading == 1) then
     readval <= data(to_integer(unsigned(address)));
 
 writeproc: process(clk,rst,writing,data)

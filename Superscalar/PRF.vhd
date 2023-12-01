@@ -12,8 +12,10 @@ entity PRF is
 	instr2val1, instr2val2 : out std_logic_vector(15 downto 0);
 	writing, reading : in std_logic 
 	);
+end entity;
 
-architecture
+architecture behav of PRF is 
+
 	type arf_data_type is array((integer'(2)**3)-1 downto 0) of std_logic_vector(15 downto 0); -- Creates a data type for the ARF
     type arf_busy_type is array((integer'(2)**3)-1 downto 0) of std_logic; -- Creates a data type for the ARF busy bits
     type arf_tag_type is array((integer'(2)**3)-1 downto 0) of std_logic_vector(7 downto 0);-- Creates a data type for the ARF tags
@@ -43,6 +45,7 @@ begin
     writeproc : process(clk,rst,opra1,oprb1,opra2,oprb2)
 
     if(writing = '1')
+    
         
 
 
