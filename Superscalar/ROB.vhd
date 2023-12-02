@@ -11,6 +11,8 @@ generic(
         pc_dec1, pc_dec2, pcpipe1, pcpipe2, pcpipe3 : in std_logic_vector(15 downto 0); -- pc inputs from the decode and pipeline
         arf_add1, arf_add2 : in std_logic_vector(2 downto 0); -- arf destination addresses from dispatch
         rrf_add1, rrf_add2 : in std_logic_vector(5 downto 0); -- rrf destinations from dispatch
+        storeval : in std_logic_vector(15 downto 0); -- 16 bit operand value to be stored
+        
         pipeout1, pipeout2, pipeout3 : in std_logic_vector(15 downto 0); -- pipeline outputs
         pipe1C, pipe2C, pipe3C, pipe1Z, pipe2Z, pipe3Z : in std_logic; -- pipeline C and Z outputs
        
@@ -20,7 +22,7 @@ generic(
         dest_arf : out std_logic_vector(2 downto 0); -- output arf destination for retirement and alias correction
         dest_memory :out std_logic_vector(15 downto 0); -- 
         cout,zout,aliasing : out std_logic;-- output values for c and z and aliasing bit for retirement
-    )
+    );
 end entity;
 
 architecture behav of ROB is
@@ -35,7 +37,9 @@ type 1bit_data_type is array((integer'(2)**8)-1 downto 0) of std_logic;
 signal opcode : 4bit_data_type
 
 signal pc : 16bit_data_type
+
 signal outputval : 16bit_data_type
+signal address : 16bit_data_type
 
 signal arf_dest : 3bit_data_type
 
@@ -86,7 +90,9 @@ begin
             arf_dest(tail) <= arf_add1;
             rrf_dest(tail) <= rrf_add1;
             executed(tail) <= '0';
-            
+            if (opcode1 = "0101") then
+            address(tail) <= storeval;
+            end if;
             length := length + 1 -
         
             if(not(length = size)) then
@@ -102,7 +108,9 @@ begin
             arf_dest(tail) <= arf_add2;
             rrf_dest(tail) <= rrf_add2;
             executed(tail) <= '0';
-
+            if (opcode2 = "0101") then
+                address(tail) <= storeval;
+                end if;
             length := length + 1;
 
             if(not(length = size)) then
@@ -155,10 +163,10 @@ begin
                 if (head = size-1) then
                     head := 0;
                 end if;
-                if((arf_dest(head) == arf_dest(head+1))) then
+                if((outputval(head) == arf_dest(head+1))) then
                     if((opcode(head) == "") and (opcode(head+1)="")) then
                         outputval(head+1) <= outputval(head)
-                    else if(opcode(head) == opcode(head+1)) then
+                    else if(outputval(head) == outputval(head+1)) then
                         aliasing <= '1';
                     end if;
                     end if;

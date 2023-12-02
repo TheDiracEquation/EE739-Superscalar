@@ -4,13 +4,33 @@ use ieee.std_logic_1164.all;
 
 entity PRF is
 	port(
-	opra1, oprb1, opra2,oprb2, writeadd: in std_logic_vector(2 downto 0); -- Input operands from the decode
-    datain : in std_logic_vector(15 downto 0);
+    -- sending data from PRF to the RS 
+	opra1, oprb1, opra2, oprb2: in std_logic_vector(2 downto 0);
+    dest1, dest2: in std_logic_vector(2 downto 0); -- Input operands from the decode
 	clk , rst  : in std_logic;
+    tag1,tag2 : in std_logic_vector(5 downto 0);
+
+    -- output to the tag generator
+    rrf_valid_out, rrf_busy_out : out std_logic_vector(63 downto 0);
+
+   
+
+    -- writing to ARF from ROB
+    robdata1 ,robdata2 : in std_logic_vector(15 downto 0);
+    rob_cz1, rob_cz2 : in std_logic_vector(1 downto 0);
+    rob_arf1, rob_arf2 : in std_logic_vector(2 downto 0);
+    aliasbit : in std_logic;
+    
+    -- writing from the pipelines to the RRF
+    rrf1,rrf2,rrf3 : in std_logic_vector(5 downto 0);  -- the destinations of renamed registers to which pipelines write
+    pipeout1, pipeout2, pipeout3 : in std_logic_vector(15 downto 0);
+    
+    -- output to the RS
 	rsvalid1,rsvalid2,rsvalid3,rsvalid4 : out std_logic;
 	instr1val1, instr1val2 : out std_logic_vector(15 downto 0);
 	instr2val1, instr2val2 : out std_logic_vector(15 downto 0);
-	writing, reading : in std_logic 
+	writing, reading, C, Z : in std_logic 
+
 	);
 end entity;
 
@@ -25,11 +45,9 @@ architecture behav of PRF is
     type rrf_busy_type is array((integer'(2)**6)-1 downto 0) of std_logic; -- Creates a data type for the RRF busy bit
 
     type cz_renamer is array((integer'(2)**6)-1 downto 0) of std_logic_vector(1 downto 0); -- Creates a data type for the CZ bits
-    type cz_busy is array ((integer'(2)**6)-1 downto 0) of std_logic_vector(1 downto 0);
-
-    signal carry : cz_renamer; -- 64 bit renamed single bit carry
-    signal zero : cz_renamer; -- 64 bit renamed single bit carry
-
+   
+    signal CZ_rename : cz_renamer; -- 64 bit renamed C and Z
+    
     signal rrf_data: rrf_data_type; -- 16 bit RRF with 64 registers 
     signal rrf_valid: rrf_valid_type; -- single bit 64 wide RRF valid 
     signal rrf_busy: rrf_busy_type; -- single bit 64 wide RRF busy 
@@ -38,18 +56,72 @@ architecture behav of PRF is
     signal arf_busy: arf_busy_type; -- single bit 8 wide ARF busy 
     signal arf_tag: arf_tag_type; -- 6 bit tag values for 8 registers , pointing to 64 wide RRF
 
+    signal CZ_busy :std_logic;
+    signal CZ_reg : std_logic_vector(1 downto 0);
+    
     signal instr1val1, data_out_sig_2, data_out_sig_3, data_out_sig_4: std_logic_vector(15 downto 0);
     signal data_tag_out_2, data_tag_out_3, data_tag_out_4: std_logic;
 
 begin
-    writeproc : process(clk,rst,opra1,oprb1,opra2,oprb2)
+    writeproc : process(clk,rst,opra1,oprb1,opra2,oprb2,dest1,dest2)
     begin 
-    if(writing = '1')
+
+
+    if(rst ='1') then
+        for i in 0 to 7 loop
+            arf_data(i) <= (others => '0');
+            arf_valid(i) <= '1';
+            arf_tag(i) <= (others => '0');
+        end loop;
+
+        for i in 0 to 7 loop
+            rrf_data(i) <= (others => '0');
+            rrf_valid(i) <= '1';
+            rrf_busy(i) <= '0';
+        end loop;
+    end if;
+
+
+    if(clk'event and clk='0') then
+
+    -- Changing tags based on access of registers for destination
+    
+        arf_tag(to_integer(unsigned(dest1))) <= tag1; -- giving first tag to first instruction destination
+        arf_valid(to_integer(unsigned(dest1))) <= '0'; -- making the same arf register invalid
+        rrf_valid(to_integer(unsigned(tag1))) <= '0'; -- the tagged RRF register has incoming value
+        rrf_busy(to_integer(unsigned(tag1))) <= '1'; -- the tagged RRF register has incoming value
+
+        arf_tag(to_integer(unsigned(dest2))) <= tag2; -- giving second tag to first instruction destination
+        arf_valid(to_integer(unsigned(dest2))) <= '0'; -- making the same arf register invalid
+        rrf_valid(to_integer(unsigned(tag2))) <= '0'; -- the tagged RRF register has incoming value
+        rrf_busy(to_integer(unsigned(tag2))) <= '1';-- the tagged RRF register has incoming value
+
+
+    
+        if(writing = '1')    
+        -- writing to the arf from the ROB
+            -- writing the main data
+            arf_data(to_integer(unsigned(rob_arf1))) <= rob_data1;
+            arf_data(to_integer(unsigned(rob_arf2))) <= rob_data2;
+            CZval <= rob_cz;
+
+            --changing tags according to tag match
+            if(arf_tag(to_integer(unsigned(rob_arf1))) == rob_rrf1) then
+                arf_busy(to_integer(unsigned(rob_arf1))) <= '0';
+                rrf_busy(to_integer(unsigned(rob_arf1))) <= '0';
+
+
+
+            -- writing to the rrf from the pipeline outputs
+            
+            rrf_data(to_integer(unsigned(rrf1))) <= pipeout1;
+            rrf_data(to_integer(unsigned(rrf2))) <= pipeout2;
+            rrf_data(to_integer(unsigned(rrf3))) <= pipeout3; 
+
     -- postrenaming - current tag doesnt match the tag from rob
     -- aliasing - if alias bit is 1 take only the second instruction as output
-    
-
-
+    -- C and Z values are written into Cval and Zval tags and and their busy
+    -- bits follow the same prcodeure as ARF.
 
 -- Reading the first operand
         readproc1 : process(rst,opra1)
@@ -159,4 +231,10 @@ begin
         end if;
         end process readproc4;
 
-    RRF_to_RS_val : process(rst,rrf_valid)
+RRF_to_tag_gen : process(rrf_valid,rrf_busy)
+begin
+    rrf_valid_out <= rrf_valid;
+    rrf_busy_out <= rrf_busy;
+end process;
+
+end architecture;

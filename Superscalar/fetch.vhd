@@ -53,7 +53,7 @@ pcpush1 <= pc;
 -- Increments PC to get next set of instructions
 increase_pc_by_4 : pcincrement port map(PCin => pc, PCout => pcinc);
 
---Increments PC to get PC to sdend with the instructions
+--Increments PC to get PC to send with the instructions
 increase_PC_by_2 : addtwo port map(input => pc, output => pcpush2);
 			
 -- Puts instruction to output
