@@ -4,20 +4,20 @@ use ieee.numeric_std.all;
 
 --package for reservation station registers
 
-CHECKLIST:
-
-ISSUED -
-OPCODE -
-PC - 
-OPR1 - CHECKED WORKING
-V1 -
-OPR2 - CHECKED WORKING
-V2 -
-IMM9 - 
-CZ -   CHECKED
-VCZ -
-COND -
-READY -
+--CHECKLIST:
+--
+--ISSUED - CHECKED
+--OPCODE - CHECKED
+--PC - 	 CHECKED
+--OPR1 - CHECKED WORKING
+--V1 - CHECKED
+--OPR2 - CHECKED WORKING
+--V2 - CHECKED
+--IMM9 - CHECKED
+--CZ -   CHECKED
+--VCZ - CHECKED
+--COND - CHECKED
+--READY - CHECKED
 
 
 package RS_gates is
@@ -25,9 +25,9 @@ package RS_gates is
     component ISSUED is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(0 downto 0);
-            A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
   end component ISSUED;
 
@@ -35,13 +35,13 @@ package RS_gates is
   component OPCODE is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(2 downto 0);
+            D1 : in std_logic_vector(3 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(2 downto 0);         
-            A1_in : in std_logic_vector(5 downto 0);
-            D1_out : out std_logic_vector(2 downto 0);
-            A2_in : in std_logic_vector(5 downto 0);
-            D2_out : out std_logic_vector(2 downto 0));
+            D2 : in std_logic_vector(3 downto 0);         
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(3 downto 0);
+				D_out2 : out std_logic_vector(3 downto 0));
   end component OPCODE;
 
 --Takes two input addrs and two data for write. for read, 2 addr.
@@ -51,10 +51,10 @@ package RS_gates is
             D1 : in std_logic_vector(15 downto 0);
             A2 : in std_logic_vector(5 downto 0);
             D2 : in std_logic_vector(15 downto 0);         
-            A1_in : in std_logic_vector(5 downto 0);
-            D1_out : out std_logic_vector(2 downto 0);
-            A2_in : in std_logic_vector(5 downto 0);
-            D2_out : out std_logic_vector(2 downto 0));
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(15 downto 0);
+				D_out2 : out std_logic_vector(15 downto 0));
   end component PC;
 
   --Takes two input addrs and two data for write. Output all for read
@@ -91,9 +91,9 @@ package RS_gates is
   component V1 is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(0 downto 0);
-            A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
   end component V1;
 
@@ -131,9 +131,9 @@ package RS_gates is
   component V2 is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(0 downto 0);
-            A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
   end component V2;
 
@@ -141,76 +141,74 @@ package RS_gates is
   component IMM9 is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(15 downto 0);
+            D1 : in std_logic_vector(8 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(15 downto 0);         
-            A1_in : in std_logic_vector(5 downto 0);
-            D1_out : out std_logic_vector(2 downto 0);
-            A2_in : in std_logic_vector(5 downto 0);
-            D2_out : out std_logic_vector(2 downto 0));
+            D2 : in std_logic_vector(8 downto 0);         
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(8 downto 0);
+				D_out2 : out std_logic_vector(8 downto 0));
   end component IMM9;
 
   -- tag length wide. Takes two input addrs and two data for write. Output all for read 
-  component C is
+  component CZ is
     port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(0 downto 0);
+            --WRITE addresses and data
+            A1 : in std_logic_vector(5 downto 0); 
+            D1 : in std_logic_vector(1 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(5 downto 0);
-            output : out std_logic_vector(63 downto 0));
-  end component C;
+            D2 : in std_logic_vector(1 downto 0);
+
+            --READ addresses and data
+            A_in1: in std_logic_vector(5 downto 0);
+            A_in2: in std_logic_vector(5 downto 0);
+            D_out1: out std_logic_vector(1 downto 0);
+            D_out2: out std_logic_vector(1 downto 0);
+
+            --VALID bits from VCZ
+            VCZ : in std_logic_vector(63 downto 0);
+
+            --TAGBUS
+            VT_1 : in std_logic;
+            VT_2 : in std_logic;
+            TAG1 : in std_logic_vector(5 downto 0);
+            TAG2 : in std_logic_vector(5 downto 0);
+            CZ1 : in std_logic_vector(1 downto 0);
+            CZ2 : in std_logic_vector(1 downto 0));
+  end component CZ;
 
   --Takes two input addrs and two data. outputs all entries
-  component VC is
+  component VCZ is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(0 downto 0);
-            A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
-  end component VC;
+  end component VCZ;
  
    -- tag length wide. Takes two input addrs and two data for write. Output all for read 
-  component Z is
-    port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(0 downto 0);
-            A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(5 downto 0);
-            output : out std_logic_vector(63 downto 0));
-  end component Z;
-
-  --Takes two input addrs and two data. outputs all entries
-  component VZ is
-    port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(0 downto 0);
-            A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(5 downto 0);
-            output : out std_logic_vector(63 downto 0));
-  end component VZ;
 
   --Takes two input addrs and two data for write. for read, 2 addr.
   component COND is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(15 downto 0);
+            D1 : in std_logic_vector(2 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(15 downto 0);         
-            A1_in : in std_logic_vector(5 downto 0);
-            D1_out : out std_logic_vector(2 downto 0);
-            A2_in : in std_logic_vector(5 downto 0);
-            D2_out : out std_logic_vector(2 downto 0));
+            D2 : in std_logic_vector(2 downto 0);         
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(2 downto 0);
+				D_out2 : out std_logic_vector(2 downto 0));
   end component COND;
 
   -- READY = ~issued * V1 * V2 * VC * VZ 
   component READY is
     port (clk,rst,w_enable : in std_logic;
-            issued : in std_logic_vector(63 downto 0);
-            V1 : in std_logic_vector(63 downto 0);
-            V2 : in std_logic_vector(63 downto 0);
-            VC : in std_logic_vector(63 downto 0);
-            VZ : in std_logic_vector(63 downto 0);
+            A1 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
   end component READY;
 
@@ -225,11 +223,13 @@ entity BIT1_REG is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
 end entity BIT1_REG;
 
 architecture behav of BIT1_REG is
-    signal data : std_logic_vector(15 downto 0) := (others => '0');
+    signal data : std_logic_vector(63 downto 0) := (others => '0');
 	begin 
 		process(clk,rst)
 		begin 
@@ -237,11 +237,12 @@ architecture behav of BIT1_REG is
 				data <= (others => '0');
 			else 
 				if(w_enable = '1') then 
-					data(to_integer(unsigned(A1))) <= D1;					
+					data(to_integer(unsigned(A1))) <= D1;
+					data(to_integer(unsigned(A2))) <= D2;			
 				end if;
 			end if;
 		end process;
-		output <= data(0 to 63);
+		output <= data;
 end behav;
 
 -----------------ISSUED--------------------
@@ -253,18 +254,22 @@ entity ISSUED is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
 end entity ISSUED;
 
 architecture behav of ISSUED is
     component BIT1_REG is 
-        port (clk,rst,w_enable : in std_logic;
+    port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
     end component;
 	begin 
-		issued1: BIT1_REG port map (clk, rst, w_enable, A1, D1, output);
+		issued1: BIT1_REG port map (clk, rst, w_enable, A1, D1,A2,D2, output);
 end behav;
   
 
@@ -276,29 +281,34 @@ use ieee.numeric_std.all;
 entity OPCODE is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(2 downto 0);
+            D1 : in std_logic_vector(3 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(2 downto 0);         
-            A_in : in std_logic_vector(5 downto 0);
-            D_out : out std_logic_vector(2 downto 0));
+            D2 : in std_logic_vector(3 downto 0);         
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(3 downto 0);
+				D_out2 : out std_logic_vector(3 downto 0));
 end entity OPCODE;
 
 architecture behav of OPCODE is
-	type memory_array_3 is array (0 to 63) of std_logic_vector(2 downto 0);
-	signal mem : memory_array_3 := (others => (others => '0'));
+	type memory_array_4 is array (0 to 63) of std_logic_vector(3 downto 0);
+	signal mem : memory_array_4 := (others => (others => '0'));
 	begin 
-		process(clk,rst,A1,A2,D1,D2,A_in)
+		process(clk,rst)
 		begin 
+		
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
-			else
+			elsif rising_edge(clk) then
 				if(w_enable = '1') then 
 					mem(to_integer(unsigned(A1))) <= D1;
-                    mem(to_integer(unsigned(A2))) <= D2;
+					mem(to_integer(unsigned(A2))) <= D2;
 				end if;
 			end if;
+			
 		end process;
-		D_out <= mem(to_integer(unsigned(A_in)));
+		D_out1 <= mem(to_integer(unsigned(A_in1)));
+		D_out2 <= mem(to_integer(unsigned(A_in2)));
 end behav;
   
 --------------------PC---------------------
@@ -312,26 +322,31 @@ entity PC is
             D1 : in std_logic_vector(15 downto 0);
             A2 : in std_logic_vector(5 downto 0);
             D2 : in std_logic_vector(15 downto 0);         
-            A_in : in std_logic_vector(5 downto 0);
-            D_out : out std_logic_vector(15 downto 0));
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(15 downto 0);
+				D_out2 : out std_logic_vector(15 downto 0));
 end entity PC;
 
 architecture behav of PC is
 	type memory_array_16 is array (0 to 63) of std_logic_vector(15 downto 0);
 	signal mem : memory_array_16 := (others => (others => '0'));
 	begin 
-        process(clk,rst,A1,A2,D1,D2,A_in)
+		process(clk,rst)
 		begin 
+		
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
-			else
+			elsif rising_edge(clk) then
 				if(w_enable = '1') then 
 					mem(to_integer(unsigned(A1))) <= D1;
-                    mem(to_integer(unsigned(A2))) <= D2;
+					mem(to_integer(unsigned(A2))) <= D2;
 				end if;
 			end if;
+			
 		end process;
-		D_out <= mem(to_integer(unsigned(A_in)));
+		D_out1 <= mem(to_integer(unsigned(A_in1)));
+		D_out2 <= mem(to_integer(unsigned(A_in2)));
 end behav;
   
 -----------------------OPR1-----------------------
@@ -413,18 +428,22 @@ entity V1 is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
 end entity V1;
 
 architecture behav of V1 is
     component BIT1_REG is 
-        port (clk,rst,w_enable : in std_logic;
+    port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
     end component;
 	begin 
-		V1_1: BIT1_REG port map (clk, rst, w_enable, A1, D1, output);
+		V1_1: BIT1_REG port map (clk, rst, w_enable, A1, D1, A2, D2, output);
 end behav;
 
 -----------------------OPR2-----------------------
@@ -507,18 +526,22 @@ entity V2 is
     port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
 end entity V2;
 
 architecture behav of V2 is
     component BIT1_REG is 
-        port (clk,rst,w_enable : in std_logic;
+    port (clk,rst,w_enable : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
             output : out std_logic_vector(63 downto 0));
     end component;
 	begin 
-		V2_1: BIT1_REG port map (clk, rst, w_enable, A1, D1, output);
+		V2_1: BIT1_REG port map (clk, rst, w_enable, A1, D1, A2, D2, output);
 end behav;
 
 -----------------------IMM9-----------------------
@@ -528,31 +551,34 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity IMM9 is
     port (clk,rst,w_enable : in std_logic;
-    A1 : in std_logic_vector(5 downto 0);
-    D1 : in std_logic_vector(8 downto 0);
-    A2 : in std_logic_vector(5 downto 0);
-    D2 : in std_logic_vector(8 downto 0);         
-    A_in : in std_logic_vector(5 downto 0);
-    D_out : out std_logic_vector(8 downto 0));
+            A1 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic_vector(8 downto 0);
+            A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic_vector(8 downto 0);         
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(8 downto 0);
+				D_out2 : out std_logic_vector(8 downto 0));
 end entity IMM9;
-
 architecture behav of IMM9 is
 	type memory_array_9 is array (0 to 63) of std_logic_vector(8 downto 0);
 	signal mem : memory_array_9 := (others => (others => '0'));
 	begin 
-
-        process(clk,rst,A1,A2,D1,D2,A_in)
+		process(clk,rst)
 		begin 
+		
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
-			else 
+			elsif rising_edge(clk) then
 				if(w_enable = '1') then 
 					mem(to_integer(unsigned(A1))) <= D1;
-                    mem(to_integer(unsigned(A2))) <= D2;
+					mem(to_integer(unsigned(A2))) <= D2;
 				end if;
 			end if;
+			
 		end process;
-		D_out <= mem(to_integer(unsigned(A_in)));
+		D_out1 <= mem(to_integer(unsigned(A_in1)));
+		D_out2 <= mem(to_integer(unsigned(A_in2)));
 end behav;
 
 ----------------------CZ--------------------------
@@ -583,7 +609,7 @@ entity CZ is
             TAG1 : in std_logic_vector(5 downto 0);
             TAG2 : in std_logic_vector(5 downto 0);
             CZ1 : in std_logic_vector(1 downto 0);
-            CZ2 : in std_logic_vector(1 downto 0);
+            CZ2 : in std_logic_vector(1 downto 0));
             
             
 end entity CZ;
@@ -622,3 +648,91 @@ architecture behav of CZ is
 end behav;
 
 
+--------------------------VCZ-----------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+entity VCZ is
+    port (clk,rst,w_enable : in std_logic;
+            A1 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
+            output : out std_logic_vector(63 downto 0));
+end entity VCZ;
+
+architecture behav of VCZ is
+    component BIT1_REG is 
+    port (clk,rst,w_enable : in std_logic;
+            A1 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
+            output : out std_logic_vector(63 downto 0));
+    end component;
+	begin 
+		VCZ1: BIT1_REG port map (clk, rst, w_enable, A1, D1, A2, D2, output);
+end behav;
+
+--------------------------COND-------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+entity COND is
+    port (clk,rst,w_enable : in std_logic;
+            A1 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic_vector(2 downto 0);
+            A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic_vector(2 downto 0);         
+            A_in1 : in std_logic_vector(5 downto 0);
+				A_in2 : in std_logic_vector(5 downto 0);
+            D_out1 : out std_logic_vector(2 downto 0);
+				D_out2 : out std_logic_vector(2 downto 0));
+end entity COND;
+
+architecture behav of COND is
+	type memory_array_3 is array (0 to 63) of std_logic_vector(2 downto 0);
+	signal mem : memory_array_3 := (others => (others => '0'));
+	begin 
+		process(clk,rst)
+		begin 
+		
+			if(rst = '1') then 
+				mem(0 to 63) <= (others => (others => '0'));
+			elsif rising_edge(clk) then
+				if(w_enable = '1') then 
+					mem(to_integer(unsigned(A1))) <= D1;
+					mem(to_integer(unsigned(A2))) <= D2;
+				end if;
+			end if;
+			
+		end process;
+		D_out1 <= mem(to_integer(unsigned(A_in1)));
+		D_out2 <= mem(to_integer(unsigned(A_in2)));
+end behav;
+
+---------------------READY--------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+entity READY is
+    port (clk,rst,w_enable : in std_logic;
+            A1 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
+            output : out std_logic_vector(63 downto 0));
+end entity READY;
+
+architecture behav of READY is
+    component BIT1_REG is 
+    port (clk,rst,w_enable : in std_logic;
+            A1 : in std_logic_vector(5 downto 0);
+            D1 : in std_logic;
+				A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic;
+            output : out std_logic_vector(63 downto 0));
+    end component;
+	begin 
+		READY1: BIT1_REG port map (clk, rst, w_enable, A1, D1, A2, D2, output);
+end behav;
