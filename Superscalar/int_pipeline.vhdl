@@ -34,18 +34,18 @@ begin
 
 proc1: process()
 begin
-    if(control=ada,adc,adz,awc,ndu,ndc,ndz) then
+    if(control(5 downto 4)="00") then
         alu_b <= rb_data;
-    elsif(control=aca,acc,acz,acw,ncu,ncc,ncz) then
+    elsif(control(5 downto 4)="01") then
         alu_b <= not rb_data;
-    elsif(control=adi) then
+    elsif(control(5 downto 4)="10") then
         alu_b <= imm_ext;
     end if;
 end process;
 
 proc2 : process()
 begin
-    if(control=addinstructions) then
+    if(control(1)='1') then
         c_out <= alu_cout;
     else 
         c_out <= c_in;
@@ -54,14 +54,14 @@ end process;
 
 proc3 : process()
 begin
-    if(control=add+nand) then --have to add contol signals
+    if(control(0)='1') then --have to add contol signals
         z_out <= alu_zout;
     else
         z_out <= z_in;
     end if;
 end process;
 
-alumap : alu port map(alu_a => ra_data, alu_b => alu_b, c_in => c_in, alu_out => alu_out, z_out => alu_zout, c_out => alu_cout, alu_sel => controlbits() );
+alumap : alu port map(alu_a => ra_data, alu_b => alu_b, c_in => c_in, alu_out => alu_out, z_out => alu_zout, c_out => alu_cout, alu_sel => control(3 downto 2) );
 extendermap : extender port map(in => imm_data, out => imm_ext);
 
 pc_out <= pc_in;
