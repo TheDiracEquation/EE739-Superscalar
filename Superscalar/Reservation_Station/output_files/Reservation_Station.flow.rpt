@@ -1,5 +1,5 @@
 Flow report for Reservation_Station
-Sun Dec 03 02:40:38 2023
+Sun Dec 03 04:58:31 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,24 +41,24 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sun Dec 03 02:40:38 2023       ;
+; Flow Status                        ; Flow Failed - Sun Dec 03 04:58:31 2023      ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Reservation_Station                         ;
 ; Top-level Entity Name              ; DUT                                         ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08DAF484C8G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 2,532                                       ;
-;     Total combinational functions  ; 2,532                                       ;
-;     Dedicated logic registers      ; 1,024                                       ;
-; Total registers                    ; 1024                                        ;
-; Total pins                         ; 221                                         ;
-; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
-; UFM blocks                         ; 0                                           ;
-; ADC blocks                         ; 0                                           ;
+; Total logic elements               ; N/A until Partition Merge                   ;
+;     Total combinational functions  ; N/A until Partition Merge                   ;
+;     Dedicated logic registers      ; N/A until Partition Merge                   ;
+; Total registers                    ; N/A until Partition Merge                   ;
+; Total pins                         ; N/A until Partition Merge                   ;
+; Total virtual pins                 ; N/A until Partition Merge                   ;
+; Total memory bits                  ; N/A until Partition Merge                   ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
+; Total PLLs                         ; N/A until Partition Merge                   ;
+; UFM blocks                         ; N/A until Partition Merge                   ;
+; ADC blocks                         ; N/A until Partition Merge                   ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/03/2023 02:40:28 ;
+; Start date & time ; 12/03/2023 04:58:24 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; Reservation_Station ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+---------------------+-------------+-----------------------------------+
 ; Assignment Name                      ; Value                                  ; Default Value       ; Entity Name ; Section Id                        ;
 +--------------------------------------+----------------------------------------+---------------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID                ; 1098529997893.170155142810860          ; --                  ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID                ; 1098529997893.170155970411712          ; --                  ; --          ; --                                ;
 ; EDA_DESIGN_INSTANCE_NAME             ; OPR1                                   ; --                  ; --          ; Testbench.vhdl                    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --                  ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --                  ; --          ; eda_board_design_boundary_scan    ;
@@ -111,8 +111,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4804 MB             ; 00:00:21                           ;
-; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:21                           ;
+; Analysis & Synthesis ; 00:00:07     ; 1.0                     ; 4799 MB             ; 00:00:17                           ;
+; Total                ; 00:00:07     ; --                      ; --                  ; 00:00:17                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

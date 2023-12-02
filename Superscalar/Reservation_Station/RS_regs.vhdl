@@ -242,19 +242,14 @@ architecture behav of BIT1_REG is
 				if(w_enable1 = '1') then 
 					data(to_integer(unsigned(A1))) <= D1;			
 				end if;
+				
+				if(w_enable2 = '1') then 
+					data(to_integer(unsigned(A2))) <= D2;			
+				end if;
+				
 			end if;
 		end process;
 		
-		process(clk,rst)
-		begin 
-			if(rst = '1') then 
-				data <= (others => '0');
-			elsif rising_edge(clk) then
-				if(w_enable2 = '1') then 
-					data(to_integer(unsigned(A2))) <= D2;			
-				end if
-			end if;
-		end process;
 		output <= data;
 end behav;
 
@@ -286,30 +281,17 @@ architecture behav of ISSUED is
 				if(w_enable1 = '1') then 
 					data(to_integer(unsigned(A1))) <= D1;			
 				end if;
-			end if;
-		end process;
-		
-		process(clk,rst)
-		begin 
-			if(rst = '1') then 
-				data <= (others => '0');
-			elsif rising_edge(clk) then 
+				
 				if(w_enable2 = '1') then 
 					data(to_integer(unsigned(A2))) <= D2;			
 				end if;
-			end if;
-		end process;
-		
-		process(clk,rst)
-		begin 
-			if(rst = '1') then 
-				data <= (others => '0');
-			elsif rising_edge(clk) then 
+				
 				if(w_enable3 = '1') then 
 					data(to_integer(unsigned(A3))) <= D3;			
 				end if;
 			end if;
 		end process;
+		
 		
 		output <= data;
 end behav;
@@ -346,20 +328,14 @@ architecture behav of OPCODE is
 				if(w_enable1 = '1') then 
 					mem(to_integer(unsigned(A1))) <= D1;
 				end if;
-			end if;
-		end process;
-		
-		process(clk,rst)
-		begin 
-		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
+				
 				if(w_enable2 = '1') then 
 					mem(to_integer(unsigned(A2))) <= D2;
 				end if;
+				
 			end if;
 		end process;
+
 		
 		D_out1 <= mem(to_integer(unsigned(A_in1)));
 		D_out2 <= mem(to_integer(unsigned(A_in2)));
@@ -395,19 +371,14 @@ architecture behav of PC is
 				if(w_enable1 = '1') then 
 					mem(to_integer(unsigned(A1))) <= D1;
 				end if;
-			end if;			
-		end process;
-		
-		process(clk,rst)
-		begin 		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
+				
 				if(w_enable2 = '1') then 
 					mem(to_integer(unsigned(A2))) <= D2;
 				end if;
+				
 			end if;			
 		end process;
+		
 		
 		D_out1 <= mem(to_integer(unsigned(A_in1)));
 		D_out2 <= mem(to_integer(unsigned(A_in2)));
@@ -459,6 +430,15 @@ architecture behav of OPR1 is
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
 			elsif (rising_edge(clk)) then
+			
+				if(w_enable1 = '1') then 
+					mem(to_integer(unsigned(A1))) <= D1;
+				end if;
+				
+				if(w_enable2 = '1') then 
+					mem(to_integer(unsigned(A2))) <= D2;
+				end if;
+				
             for i in 0 to 63 loop
                 if (V1(i) = '0') then
                     if (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG1)) and VT_1 = '1') then             
@@ -473,30 +453,8 @@ architecture behav of OPR1 is
 
 			end if;	
 		end process;
-		
-		--WRITE PROCESS
-		process(clk,rst)
-		begin 		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
-				if(w_enable1 = '1') then 
-					mem(to_integer(unsigned(A1))) <= D1;
-				end if;
-			end if;			
-		end process;
-		
-		--WRITE PROCESS
-		process(clk,rst)
-		begin 		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
-				if(w_enable2 = '1') then 
-					mem(to_integer(unsigned(A2))) <= D2;
-				end if;
-			end if;			
-		end process;
+			
+	
 		
 		D_out1 <= mem(to_integer(unsigned(A_in1)));
 		D_out2 <= mem(to_integer(unsigned(A_in2)));
@@ -576,6 +534,14 @@ architecture behav of OPR2 is
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
 			elsif (rising_edge(clk)) then
+				if(w_enable1 = '1') then 
+					mem(to_integer(unsigned(A1))) <= D1;
+				end if;
+				
+				if(w_enable2 = '1') then 
+					mem(to_integer(unsigned(A2))) <= D2;
+				end if;
+				
             for i in 0 to 63 loop
                 if (V1(i) = '0') then
                     if (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG1)) and VT_1 = '1') then             
@@ -591,29 +557,6 @@ architecture behav of OPR2 is
 			end if;	
 		end process;
 		
-		--WRITE PROCESS
-		process(clk,rst)
-		begin 		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
-				if(w_enable1 = '1') then 
-					mem(to_integer(unsigned(A1))) <= D1;
-				end if;
-			end if;			
-		end process;
-		
-		--WRITE PROCESS
-		process(clk,rst)
-		begin 		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
-				if(w_enable2 = '1') then 
-					mem(to_integer(unsigned(A2))) <= D2;
-				end if;
-			end if;			
-		end process;
 		
 		D_out1 <= mem(to_integer(unsigned(A_in1)));
 		D_out2 <= mem(to_integer(unsigned(A_in2)));
@@ -675,21 +618,12 @@ architecture behav of IMM9 is
 				if(w_enable1 = '1') then 
 					mem(to_integer(unsigned(A1))) <= D1;
 				end if;
-			end if;
-		end process;
-		
-		process(clk,rst)
-		begin 
-		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
 				if(w_enable2 = '1') then 
 					mem(to_integer(unsigned(A2))) <= D2;
 				end if;
 			end if;
-			
 		end process;
+		
 		D_out1 <= mem(to_integer(unsigned(A_in1)));
 		D_out2 <= mem(to_integer(unsigned(A_in2)));
 end behav;
@@ -737,7 +671,15 @@ architecture behav of CZ is
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
 
-			elsif (rising_edge(clk)) then			
+			elsif (rising_edge(clk)) then		
+					if(w_enable1 = '1') then 
+						mem(to_integer(unsigned(A1))) <= D1;
+					end if;
+					
+					if(w_enable2 = '1') then 
+						mem(to_integer(unsigned(A2))) <= D2;
+					end if;
+					
 					--TAG CHECKING
 					for i in 0 to 63 loop
 						 if (VCZ(i) = '0') then
@@ -751,31 +693,6 @@ architecture behav of CZ is
 			end if;
 		end process;
 		
-		--WRITE PROCESS
-		process(clk,rst)
-		begin 
-		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
-				if(w_enable1 = '1') then 
-					mem(to_integer(unsigned(A1))) <= D1;
-				end if;
-			end if;
-		end process;
-		
-		--WRITE PROCESS
-		process(clk,rst)
-		begin 
-		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
-				if(w_enable2 = '1') then 
-					mem(to_integer(unsigned(A2))) <= D2;
-				end if;
-			end if;
-		end process;
 		
 		D_out1 <= mem(to_integer(unsigned(A_in1)));
 		D_out2 <= mem(to_integer(unsigned(A_in2)));
@@ -837,22 +754,15 @@ architecture behav of COND is
 				if(w_enable1 = '1') then 
 					mem(to_integer(unsigned(A1))) <= D1;
 				end if;
-			end if;
-			
-		end process;
-		
-		process(clk,rst)
-		begin 
-		
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-			elsif rising_edge(clk) then
+				
 				if(w_enable2 = '1') then 
 					mem(to_integer(unsigned(A2))) <= D2;
 				end if;
+				
 			end if;
 			
 		end process;
+		
 		D_out1 <= mem(to_integer(unsigned(A_in1)));
 		D_out2 <= mem(to_integer(unsigned(A_in2)));
 end behav;

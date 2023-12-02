@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Reservation_Station
-Sun Dec 03 02:40:38 2023
+Sun Dec 03 04:58:31 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -10,15 +10,8 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Port Connectivity Checks: "OPR1:add_instance"
- 11. Post-Synthesis Netlist Statistics for Top Partition
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
+  5. Port Connectivity Checks: "OPR1:add_instance"
+  6. Analysis & Synthesis Messages
 
 
 
@@ -45,22 +38,22 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Dec 03 02:40:38 2023       ;
+; Analysis & Synthesis Status        ; Failed - Sun Dec 03 04:58:31 2023           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Reservation_Station                         ;
 ; Top-level Entity Name              ; DUT                                         ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 2,532                                       ;
-;     Total combinational functions  ; 2,532                                       ;
-;     Dedicated logic registers      ; 1,024                                       ;
-; Total registers                    ; 1024                                        ;
-; Total pins                         ; 221                                         ;
-; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
-; UFM blocks                         ; 0                                           ;
-; ADC blocks                         ; 0                                           ;
+; Total logic elements               ; N/A until Partition Merge                   ;
+;     Total combinational functions  ; N/A until Partition Merge                   ;
+;     Dedicated logic registers      ; N/A until Partition Merge                   ;
+; Total registers                    ; N/A until Partition Merge                   ;
+; Total pins                         ; N/A until Partition Merge                   ;
+; Total virtual pins                 ; N/A until Partition Merge                   ;
+; Total memory bits                  ; N/A until Partition Merge                   ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
+; Total PLLs                         ; N/A until Partition Merge                   ;
+; UFM blocks                         ; N/A until Partition Merge                   ;
+; ADC blocks                         ; N/A until Partition Merge                   ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -159,199 +152,25 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 8           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processor 3            ;   0.0%      ;
-;     Processor 4            ;   0.0%      ;
-;     Processor 5            ;   0.0%      ;
-;     Processor 6            ;   0.0%      ;
-;     Processor 7            ;   0.0%      ;
-;     Processor 8            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                   ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                            ; Library ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------+---------+
-; RS_regs.vhdl                     ; yes             ; User VHDL File  ; C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl ;         ;
-; DUT.vhdl                         ; yes             ; User VHDL File  ; C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl     ;         ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------+---------+
-
-
-+-----------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                           ;
-+---------------------------------------------+-------------------------+
-; Resource                                    ; Usage                   ;
-+---------------------------------------------+-------------------------+
-; Estimated Total logic elements              ; 2,532                   ;
-;                                             ;                         ;
-; Total combinational functions               ; 2532                    ;
-; Logic element usage by number of LUT inputs ;                         ;
-;     -- 4 input functions                    ; 1440                    ;
-;     -- 3 input functions                    ; 1088                    ;
-;     -- <=2 input functions                  ; 4                       ;
-;                                             ;                         ;
-; Logic elements by mode                      ;                         ;
-;     -- normal mode                          ; 2532                    ;
-;     -- arithmetic mode                      ; 0                       ;
-;                                             ;                         ;
-; Total registers                             ; 1024                    ;
-;     -- Dedicated logic registers            ; 1024                    ;
-;     -- I/O registers                        ; 0                       ;
-;                                             ;                         ;
-; I/O pins                                    ; 221                     ;
-;                                             ;                         ;
-; Embedded Multiplier 9-bit elements          ; 0                       ;
-;                                             ;                         ;
-; Maximum fan-out node                        ; input_vector[188]~input ;
-; Maximum fan-out                             ; 1024                    ;
-; Total fan-out                               ; 13381                   ;
-; Average fan-out                             ; 3.35                    ;
-+---------------------------------------------+-------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                   ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name    ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------+-------------+--------------+
-; |DUT                       ; 2532 (0)            ; 1024 (0)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 221  ; 0            ; 0          ; |DUT                   ; DUT         ; work         ;
-;    |OPR1:add_instance|     ; 2532 (2532)         ; 1024 (1024)               ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DUT|OPR1:add_instance ; OPR1        ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------+-------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 1024  ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 1024  ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 1024  ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+--------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[63][6]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[62][15] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[61][0]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[60][14] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[59][0]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[58][1]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[57][1]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[56][14] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[55][10] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[54][3]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[53][15] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[52][10] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[51][11] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[50][5]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[49][9]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[48][0]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[47][9]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[46][3]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[45][4]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[44][3]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[43][15] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[42][15] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[41][15] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[40][6]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[39][5]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[38][5]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[37][3]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[36][9]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[35][9]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[34][5]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[33][12] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[32][6]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[31][6]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[30][2]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[29][13] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[28][14] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[27][13] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[26][4]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[25][12] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[24][0]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[23][6]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[22][6]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[21][14] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[20][12] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[19][9]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[18][0]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[17][0]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[16][11] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[15][3]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[14][10] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[13][8]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[12][6]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[11][9]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[10][7]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[9][7]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[8][13]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[7][14]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[6][2]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[5][9]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[4][9]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[3][9]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[2][9]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[1][9]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |DUT|OPR1:add_instance|mem[0][9]   ;
-; 64:1               ; 16 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; No         ; |DUT|OPR1:add_instance|Mux28       ;
-; 64:1               ; 16 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; No         ; |DUT|OPR1:add_instance|Mux7        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "OPR1:add_instance"                                                                                                                          ;
-+------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port ; Type  ; Severity ; Details                                                                                                                                      ;
-+------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; vt_1 ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; vt_2 ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; vt_3 ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-+------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Top Partition ;
-+-----------------------+-----------------------------+
-; Type                  ; Count                       ;
-+-----------------------+-----------------------------+
-; boundary_port         ; 221                         ;
-; cycloneiii_ff         ; 1024                        ;
-;     ENA CLR           ; 1024                        ;
-; cycloneiii_lcell_comb ; 2532                        ;
-;     normal            ; 2532                        ;
-;         2 data inputs ; 4                           ;
-;         3 data inputs ; 1088                        ;
-;         4 data inputs ; 1440                        ;
-;                       ;                             ;
-; Max LUT depth         ; 6.00                        ;
-; Average LUT depth     ; 4.20                        ;
-+-----------------------+-----------------------------+
-
-
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:02     ;
-+----------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "OPR1:add_instance"                                                                                                                                         ;
++-----------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type    ; Severity         ; Details                                                                                                                                      ;
++-----------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; w_enable  ; Unknown ; Critical Warning ; Named port was not declared by the instantiated entity                                                                                       ;
+; w_enable1 ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; w_enable2 ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; vt_1      ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; vt_2      ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; vt_3      ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-----------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -360,38 +179,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sun Dec 03 02:40:28 2023
+    Info: Processing started: Sun Dec 03 04:58:24 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Reservation_Station -c Reservation_Station
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 27 design units, including 13 entities, in source file rs_regs.vhdl
     Info (12022): Found design unit 1: RS_gates File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 23
-    Info (12022): Found design unit 2: BIT1_REG-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 231
-    Info (12022): Found design unit 3: ISSUED-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 262
-    Info (12022): Found design unit 4: OPCODE-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 293
-    Info (12022): Found design unit 5: PC-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 331
-    Info (12022): Found design unit 6: OPR1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 387
-    Info (12022): Found design unit 7: V1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 436
-    Info (12022): Found design unit 8: OPR2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 485
-    Info (12022): Found design unit 9: V2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 534
-    Info (12022): Found design unit 10: IMM9-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 563
-    Info (12022): Found design unit 11: CZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 617
-    Info (12022): Found design unit 12: VCZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 664
-    Info (12022): Found design unit 13: COND-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 693
-    Info (12022): Found design unit 14: READY-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 727
-    Info (12023): Found entity 1: BIT1_REG File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 222
-    Info (12023): Found entity 2: ISSUED File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 253
-    Info (12023): Found entity 3: OPCODE File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 281
-    Info (12023): Found entity 4: PC File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 319
-    Info (12023): Found entity 5: OPR1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 356
-    Info (12023): Found entity 6: V1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 427
-    Info (12023): Found entity 7: OPR2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 454
-    Info (12023): Found entity 8: V2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 525
-    Info (12023): Found entity 9: IMM9 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 552
-    Info (12023): Found entity 10: CZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 589
-    Info (12023): Found entity 11: VCZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 655
-    Info (12023): Found entity 12: COND File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 681
-    Info (12023): Found entity 13: READY File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 718
+    Info (12022): Found design unit 2: BIT1_REG-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 233
+    Info (12022): Found design unit 3: ISSUED-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 272
+    Info (12022): Found design unit 4: OPCODE-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 317
+    Info (12022): Found design unit 5: PC-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 361
+    Info (12022): Found design unit 6: OPR1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 422
+    Info (12022): Found design unit 7: V1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 477
+    Info (12022): Found design unit 8: OPR2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 526
+    Info (12022): Found design unit 9: V2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 579
+    Info (12022): Found design unit 10: IMM9-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 608
+    Info (12022): Found design unit 11: CZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 664
+    Info (12022): Found design unit 12: VCZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 715
+    Info (12022): Found design unit 13: COND-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 744
+    Info (12022): Found design unit 14: READY-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 783
+    Info (12023): Found entity 1: BIT1_REG File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 224
+    Info (12023): Found entity 2: ISSUED File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 261
+    Info (12023): Found entity 3: OPCODE File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 305
+    Info (12023): Found entity 4: PC File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 349
+    Info (12023): Found entity 5: OPR1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 391
+    Info (12023): Found entity 6: V1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 468
+    Info (12023): Found entity 7: OPR2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 495
+    Info (12023): Found entity 8: V2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 570
+    Info (12023): Found entity 9: IMM9 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 597
+    Info (12023): Found entity 10: CZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 636
+    Info (12023): Found entity 11: VCZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 706
+    Info (12023): Found entity 12: COND File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 732
+    Info (12023): Found entity 13: READY File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 774
 Info (12021): Found 2 design units, including 1 entities, in source file dut.vhdl
     Info (12022): Found design unit 1: DUT-DutWrap File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 12
     Info (12023): Found entity 1: DUT File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 7
@@ -400,149 +219,12 @@ Info (12021): Found 2 design units, including 1 entities, in source file testben
     Info (12023): Found entity 1: Testbench File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Testbench.vhdl Line: 7
 Info (12127): Elaborating entity "DUT" for the top level hierarchy
 Info (12128): Elaborating entity "OPR1" for hierarchy "OPR1:add_instance" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 38
+Error (12002): Port "w_enable" does not exist in macrofunction "add_instance" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 38
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Info (286030): Timing-Driven Synthesis is running
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 130 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "input_vector[0]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[1]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[2]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[3]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[4]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[5]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[6]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[7]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[8]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[9]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[10]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[11]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[12]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[13]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[14]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[15]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[16]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[17]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[18]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[19]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[20]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[21]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[22]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[23]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[24]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[25]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[26]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[27]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[28]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[29]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[30]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[31]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[32]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[33]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[34]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[35]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[36]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[37]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[38]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[39]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[40]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[41]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[42]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[43]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[44]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[45]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[46]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[47]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[48]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[49]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[50]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[51]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[52]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[53]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[54]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[55]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[56]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[57]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[58]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[59]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[60]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[61]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[62]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[63]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[64]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[65]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[66]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[67]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[68]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[69]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[70]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[71]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[72]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[73]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[74]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[75]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[76]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[77]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[78]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[79]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[80]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[81]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[82]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[83]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[84]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[85]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[86]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[87]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[88]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[89]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[90]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[91]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[92]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[93]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[94]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[95]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[96]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[97]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[98]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[99]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[100]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[101]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[102]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[103]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[104]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[105]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[106]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[107]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[108]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[109]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[110]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[111]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[112]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[113]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[114]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[115]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[116]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[117]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[118]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[119]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[120]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[121]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[122]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[123]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[124]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[125]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[126]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[127]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[128]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-    Warning (15610): No output dependent on input pin "input_vector[129]" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 8
-Info (21057): Implemented 2753 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 189 input pins
-    Info (21059): Implemented 32 output pins
-    Info (21061): Implemented 2532 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 133 warnings
-    Info: Peak virtual memory: 4804 megabytes
-    Info: Processing ended: Sun Dec 03 02:40:38 2023
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:21
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 2 warnings
+    Error: Peak virtual memory: 4799 megabytes
+    Error: Processing ended: Sun Dec 03 04:58:31 2023
+    Error: Elapsed time: 00:00:07
+    Error: Total CPU time (on all processors): 00:00:17
 
 

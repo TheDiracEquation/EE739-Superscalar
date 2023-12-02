@@ -1,64 +1,65 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-entity OPR1 is
-    port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic_vector(15 downto 0);
-            A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(15 downto 0);
-
-            A_in1: in std_logic_vector(5 downto 0);
-            A_in2: in std_logic_vector(5 downto 0);
-            D_out1: out std_logic_vector(15 downto 0);
-            D_out2: out std_logic_vector(15 downto 0);
-
-            V1 : in std_logic_vector(63 downto 0);
-
-            TAG1 : in std_logic_vector(5 downto 0);
-            TAG2 : in std_logic_vector(5 downto 0);
-            TAG3 : in std_logic_vector(5 downto 0);
-            OPR1 : in std_logic_vector(15 downto 0);
-            OPR2 : in std_logic_vector(15 downto 0);
-            OPR3 : in std_logic_vector(15 downto 0));
+library work;
+use work.RS_regs.all;
+entity Reservation_Station is
+    port (	clk,rst : in std_logic;
+	 
+            OPCODE1 : in std_logic_vector(3 downto 0);
+            PC1 : in std_logic_vector(15 downto 0);
+				IMM91 : in std_logic_vector(8 downto 0);
+				COND1 : in std_logic_vector(2 downto 0);
+				
+				OP_READ1 : in std_logic_vector(15 downto 0);
+				OP_READ1_V: in std_logic;
+								
+				OP_READ2 : in std_logic_vector(15 downto 0);
+				OP_READ2_V: in std_logic;
+				
+				CZ_READ1 : in std_logic_vector(1 downto 0);
+				CZ_READ1_V : in std_logic;
+				
+				
+				OPCODE2 : in std_logic_vector(3 downto 0);
+            PC2 : in std_logic_vector(15 downto 0);
+				IMM92 : in std_logic_vector(8 downto 0);
+				COND2 : in std_logic_vector(2 downto 0);
+				
+				OP_READ3 : in std_logic_vector(15 downto 0);
+				OP_READ3_V: in std_logic;
+				
+				OP_READ4 : in std_logic_vector(15 downto 0);
+				OP_READ4_V: in std_logic;
+				
+				CZ_READ2 : in std_logic_vector(1 downto 0);
+				CZ_READ2_V : in std_logic;
+				
+				
+				
+				);
             
             
-end entity OPR1;
+end entity Reservation_Station;
 
-architecture behav of OPR1 is
-	type memory_array_16 is array (0 to 63) of std_logic_vector(15 downto 0);
-	signal mem : memory_array_16 := (others => (others => '0'));
+architecture behav of Reservation_Station is
+	signal mem ;
 	begin 
-        process(clk,rst)
-		begin 
-			if(rst = '1') then 
-				mem(0 to 63) <= (others => (others => '0'));
-
-			elsif (rising_edge(clk)) then
-				if(w_enable = '1') then 
-                    --WRITE
-							mem(to_integer(unsigned(A1))) <= D1; --TODO set valid bit to 1 and check for issued
-                     mem(to_integer(unsigned(A2))) <= D2;
-
-                    --TAG CHECKING
-                    for i in 0 to 63 loop
-                        if (V1(i) = '0') then
-									mem(4) <= "1111111111111111";
-                            if (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG1))) then
-											
-                                mem(i) <= OPR1; --TODO set valid bit to 1
-                            elsif (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG2))) then
-                                mem(i) <= OPR2;
-                            elsif (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG3))) then
-									     
-                                mem(i) <= OPR3;
-                            end if;
-                        end if;
-                    end loop;
-
-				end if;
-			end if;
-		end process;
-		D_out1 <= mem(to_integer(unsigned(A_in1)));
-		D_out2 <= mem(to_integer(unsigned(A_in2)));
+	
+	ISSUED_ : ISSUED port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	OPCODE_ : OPCODE port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	PC_ : PC port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	OPR1_ : OPR1 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	V1_ : V1 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	OPR2_ : OPR2 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	V2_ : V2 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	IMM9_ : IMM9 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	CZ_ : CZ port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	VCZ_ : VCZ port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	COND_ : COND port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	READY_ : READY port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	
+	
+	
+	
 end behav;
