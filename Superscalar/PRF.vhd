@@ -85,32 +85,37 @@ begin
     if(clk'event and clk='0') then
 
     -- Changing tags based on access of registers for destination
-    
-        arf_tag(to_integer(unsigned(dest1))) <= tag1; -- giving first tag to first instruction destination
-        arf_valid(to_integer(unsigned(dest1))) <= '0'; -- making the same arf register invalid
-        rrf_valid(to_integer(unsigned(tag1))) <= '0'; -- the tagged RRF register has incoming value
-        rrf_busy(to_integer(unsigned(tag1))) <= '1'; -- the tagged RRF register has incoming value
-
-        arf_tag(to_integer(unsigned(dest2))) <= tag2; -- giving second tag to first instruction destination
-        arf_valid(to_integer(unsigned(dest2))) <= '0'; -- making the same arf register invalid
-        rrf_valid(to_integer(unsigned(tag2))) <= '0'; -- the tagged RRF register has incoming value
-        rrf_busy(to_integer(unsigned(tag2))) <= '1';-- the tagged RRF register has incoming value
+        if(rename1 = '1')
+            arf_tag(to_integer(unsigned(dest1))) <= tag1; -- giving first tag to first instruction destination
+            arf_valid(to_integer(unsigned(dest1))) <= '0'; -- making the same arf register invalid
+            rrf_valid(to_integer(unsigned(tag1))) <= '0'; -- the tagged RRF register has incoming value
+            rrf_busy(to_integer(unsigned(tag1))) <= '1'; -- the tagged RRF register has incoming value
+        if(rename2 = '1')
+            arf_tag(to_integer(unsigned(dest2))) <= tag2; -- giving second tag to first instruction destination
+            arf_valid(to_integer(unsigned(dest2))) <= '0'; -- making the same arf register invalid
+            rrf_valid(to_integer(unsigned(tag2))) <= '0'; -- the tagged RRF register has incoming value
+            rrf_busy(to_integer(unsigned(tag2))) <= '1';-- the tagged RRF register has incoming value
 
 
     
         if(writing = '1')    
         -- writing to the arf from the ROB
             -- writing the main data
+            if(rob_head = '1')
             arf_data(to_integer(unsigned(rob_arf1))) <= rob_data1;
-            arf_data(to_integer(unsigned(rob_arf2))) <= rob_data2;
-            CZval <= rob_cz;
 
+            if(rob_neck = '1')
+            arf_data(to_integer(unsigned(rob_arf2))) <= rob_data2;
+            
+            if((rob_head and rob_neck) = '1')
+            CZval <= rob_cz2;
+            else if((rob_head) = 1 and (rob_neck='0')) then
+            CZval <= rob_cz1;
+            
             --changing tags according to tag match
             if(arf_tag(to_integer(unsigned(rob_arf1))) == rob_rrf1) then
                 arf_busy(to_integer(unsigned(rob_arf1))) <= '0';
                 rrf_busy(to_integer(unsigned(rob_arf1))) <= '0';
-
-
 
             -- writing to the rrf from the pipeline outputs
             
