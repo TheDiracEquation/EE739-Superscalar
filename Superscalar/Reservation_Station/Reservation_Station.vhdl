@@ -46,9 +46,9 @@ architecture behav of Reservation_Station is
 	signal mem ;
 	begin 
 	
-	ISSUED_ : ISSUED port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
-	OPCODE_ : OPCODE port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
-	PC_ : PC port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
+	ISSUED_ : ISSUED port map (clk, rst, issued_WE1,issued_WE2,issued_WE3,  ISSUED_A1,ISSUED_D1,ISSUED_A2,ISSUED_D2,ISSUED_A3,ISSUED_D3,ISSUED_op);
+	OPCODE_ : OPCODE port map (clk, rst, opcode_WE1, opcode_WE2,OPCODE_A1,OPCODE_D1,OPCODE_A2,OPCODE_D2,OPCODE_Ain1,OPCODE_Ain2,OPCODE_Dout1,OPCODE_Dout2);
+	PC_ : PC port map (clk, rst, pc_WE1, pc_WE2,PC_A1,PC_D1,PC_A2,PC_D2,PC_Ain1,PC_Ain2,PC_Dout1,PC_Dout2);
 	OPR1_ : OPR1 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
 	V1_ : V1 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
 	OPR2_ : OPR2 port map (clk, rst, w_enable, ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1,ISSUED_A1);
