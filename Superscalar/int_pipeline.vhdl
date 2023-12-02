@@ -16,7 +16,7 @@ architecture behavioural of int_pipeline is
     signal imm_ext, alu_b: std_logic_vector(15 downto 0) := (others => '0');
     signal alu_cout, z_sig, alu_zout: std_logic;
     
-    component extender is
+    component extendimm6 is
         port(input: in std_logic_vector(8 downto 0);
 		  output: out std_logic_vector(15 downto 0));
     end component;
@@ -62,7 +62,7 @@ begin
 end process;
 
 alumap : alu port map(alu_a => ra_data, alu_b => alu_b, c_in => c_in, alu_out => alu_out, z_out => alu_zout, c_out => alu_cout, alu_sel => control(3 downto 2) );
-extendermap : extender port map(in => imm_data, out => imm_ext);
+extendermap : extendimm6 port map(input => imm_data, output => imm_ext);
 
 pc_out <= pc_in;
 
