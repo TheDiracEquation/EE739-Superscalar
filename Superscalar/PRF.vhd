@@ -43,10 +43,12 @@ architecture behav of PRF is
 
 begin
     writeproc : process(clk,rst,opra1,oprb1,opra2,oprb2)
-
+    begin 
     if(writing = '1')
+    -- postrenaming - current tag doesnt match the tag from rob
+    -- aliasing - if alias bit is 1 take only the second instruction as output
     
-        
+
 
 
 -- Reading the first operand
