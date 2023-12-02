@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity int_pipeline is 
     port(
-        controlbits: in std_logic_vector(5 downto 0); --controlbits from control store component for alu operations
+        control: in std_logic_vector(5 downto 0); --controlbits from control store component for alu operations
         ra_data, rb_data, pc_in: in std_logic_vector(15 downto 0);
         imm_data: in std_logic_vector(5 downto 0);
         c_in, z_in: in std_logic;
@@ -32,7 +32,7 @@ architecture behavioural of int_pipeline is
 
 begin
 
-proc1: process()
+proc1: process(control, imm_ext, rb_data)
 begin
     if(control(5 downto 4)="00") then
         alu_b <= rb_data;
@@ -43,7 +43,7 @@ begin
     end if;
 end process;
 
-proc2 : process()
+proc2 : process(control,alu_cout,c_in)
 begin
     if(control(1)='1') then
         c_out <= alu_cout;
@@ -52,7 +52,7 @@ begin
     end if;
 end process;
 
-proc3 : process()
+proc3 : process(control,alu_zout,z_in)
 begin
     if(control(0)='1') then --have to add contol signals
         z_out <= alu_zout;
