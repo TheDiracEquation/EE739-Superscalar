@@ -12,8 +12,8 @@ architecture Behave of Testbench is
   --  edit the following lines to set the number of i/o's of your
   --  DUT.
   ----------------------------------------------------------------
-  constant number_of_inputs  : integer := 5;  -- # input bits to your design.
-  constant number_of_outputs : integer := 2;  -- # output bits from your design.
+  constant number_of_inputs  : integer := 189;  -- # input bits to your design.
+  constant number_of_outputs : integer := 32;  -- # output bits from your design.
   ----------------------------------------------------------------
   ----------------------------------------------------------------
 

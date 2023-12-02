@@ -1,0 +1,135 @@
+# Reading pref.tcl
+# do Reservation_Station_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 23:11:10 on Dec 02,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity DUT
+# -- Compiling architecture DutWrap of DUT
+# End time: 23:11:10 on Dec 02,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 23:11:10 on Dec 02,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity OPR1
+# -- Compiling architecture behav of OPR1
+# End time: 23:11:10 on Dec 02,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Testbench.vhdl}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 23:11:11 on Dec 02,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Testbench.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Testbench
+# -- Compiling architecture Behave of Testbench
+# End time: 23:11:11 on Dec 02,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm -L rtl_work -L work -voptargs="+acc"  Testbench
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm -L rtl_work -L work -voptargs=""+acc"" Testbench 
+# Start time: 23:11:11 on Dec 02,2023
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.testbench(behave)
+# Loading work.dut(dutwrap)
+# Loading ieee.numeric_std(body)
+# Loading work.opr1(behav)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut_instance/add_instance
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut_instance/add_instance
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 19 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 19 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 38 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 38 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 57 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 57 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 76 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 76 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 95 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 95 ns  Iteration: 0  Instance: /testbench
+# ** Note: SUCCESS, all tests passed.
+#    Time: 114 ns  Iteration: 0  Instance: /testbench
+add wave -position end  sim:/testbench/dut_instance/add_instance/mem(3)
+add wave -position end  sim:/testbench/dut_instance/add_instance/mem(4)
+add wave -position end  sim:/testbench/dut_instance/add_instance/mem(5)
+add wave -position end  sim:/testbench/dut_instance/add_instance/mem(6)
+add wave -position end  sim:/testbench/dut_instance/add_instance/mem(7)
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut_instance/add_instance
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /testbench/dut_instance/add_instance
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 0 ps  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 19 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 19 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 38 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 38 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 57 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 57 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 76 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 76 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 95 ns  Iteration: 0  Instance: /testbench
+# ** Error: (vsim-3549) TEXTIO procedure READ(BIT_VECTOR) : Wrong BIT_VECTOR length. Expected 32, found 1.
+#    Time: 95 ns  Iteration: 0  Instance: /testbench
+# ** Note: SUCCESS, all tests passed.
+#    Time: 114 ns  Iteration: 0  Instance: /testbench
+# End time: 00:07:53 on Dec 03,2023, Elapsed time: 0:56:42
+# Errors: 12, Warnings: 2

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Reservation_Station
-Fri Dec 01 01:06:02 2023
+Sun Dec 03 00:20:34 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -37,10 +37,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Fri Dec 01 01:06:02 2023           ;
+; Analysis & Synthesis Status        ; Failed - Sun Dec 03 00:20:34 2023           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Reservation_Station                         ;
-; Top-level Entity Name              ; ISSUED                                      ;
+; Top-level Entity Name              ; DUT                                         ;
 ; Family                             ; MAX 10                                      ;
 ; Total logic elements               ; N/A until Partition Merge                   ;
 ;     Total combinational functions  ; N/A until Partition Merge                   ;
@@ -62,7 +62,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                           ; Setting            ; Default Value       ;
 +------------------------------------------------------------------+--------------------+---------------------+
 ; Device                                                           ; 10M08DAF484C8G     ;                     ;
-; Top-level entity name                                            ; ISSUED             ; Reservation_Station ;
+; Top-level entity name                                            ; DUT                ; Reservation_Station ;
 ; Family name                                                      ; MAX 10             ; Cyclone V           ;
 ; Use smart compilation                                            ; Off                ; Off                 ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                  ;
@@ -164,39 +164,41 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Fri Dec 01 01:05:56 2023
+    Info: Processing started: Sun Dec 03 00:20:27 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Reservation_Station -c Reservation_Station
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 19 design units, including 9 entities, in source file rs_regs.vhdl
-    Info (12022): Found design unit 1: RS_gates File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 7
-    Info (12022): Found design unit 2: BIT1_REG-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 119
-    Info (12022): Found design unit 3: ISSUED-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 146
-    Info (12022): Found design unit 4: OPCODE-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 172
-    Info (12022): Found design unit 5: PC-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 204
-    Info (12022): Found design unit 6: OPR1-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 236
-    Info (12022): Found design unit 7: V1-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 266
-    Info (12022): Found design unit 8: OPR2-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 291
-    Info (12022): Found design unit 9: V2-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 321
-    Info (12022): Found design unit 10: IMM9-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 346
-    Info (12023): Found entity 1: BIT1_REG File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 112
-    Info (12023): Found entity 2: ISSUED File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 139
-    Info (12023): Found entity 3: OPCODE File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 162
-    Info (12023): Found entity 4: PC File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 194
-    Info (12023): Found entity 5: OPR1 File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 226
-    Info (12023): Found entity 6: V1 File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 259
-    Info (12023): Found entity 7: OPR2 File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 281
-    Info (12023): Found entity 8: V2 File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 314
-    Info (12023): Found entity 9: IMM9 File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/RS_regs.vhdl Line: 336
-Info (12021): Found 2 design units, including 1 entities, in source file reservation_station.vhdl
-    Info (12022): Found design unit 1: code_memory-behav File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/Reservation_Station.vhdl Line: 12
-    Info (12023): Found entity 1: reservation_Station File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/Reservation_Station.vhdl Line: 7
-Error (10481): VHDL Use Clause error at Reservation_Station.vhdl(5): design library "work" does not contain primary unit "RS_regs". Verify that the primary unit exists in the library and has been successfully compiled. File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/Reservation_Station.vhdl Line: 5
-Error (10800): VHDL error at Reservation_Station.vhdl(5): selected name in use clause is not an expanded name File: C:/Users/ksath/Documents/IITB/Semester5/EE739/Superscalar-Processor-main/Reservation_Station/Reservation_Station.vhdl Line: 5
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 1 warning
-    Error: Peak virtual memory: 4777 megabytes
-    Error: Processing ended: Fri Dec 01 01:06:02 2023
-    Error: Elapsed time: 00:00:06
+    Info (12022): Found design unit 1: RS_gates File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 8
+    Info (12022): Found design unit 2: BIT1_REG-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 216
+    Info (12022): Found design unit 3: ISSUED-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 243
+    Info (12022): Found design unit 4: OPCODE-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 269
+    Info (12022): Found design unit 5: PC-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 301
+    Info (12022): Found design unit 6: OPR1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 354
+    Info (12022): Found design unit 7: V1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 401
+    Info (12022): Found design unit 8: OPR2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 445
+    Info (12022): Found design unit 9: V2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 475
+    Info (12022): Found design unit 10: IMM9-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 500
+    Info (12023): Found entity 1: BIT1_REG File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 209
+    Info (12023): Found entity 2: ISSUED File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 236
+    Info (12023): Found entity 3: OPCODE File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 259
+    Info (12023): Found entity 4: PC File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 291
+    Info (12023): Found entity 5: OPR1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 323
+    Info (12023): Found entity 6: V1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 394
+    Info (12023): Found entity 7: OPR2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 416
+    Info (12023): Found entity 8: V2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 468
+    Info (12023): Found entity 9: IMM9 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 490
+Info (12021): Found 2 design units, including 1 entities, in source file dut.vhdl
+    Info (12022): Found design unit 1: DUT-DutWrap File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 12
+    Info (12023): Found entity 1: DUT File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file testbench.vhdl
+    Info (12022): Found design unit 1: Testbench-Behave File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Testbench.vhdl Line: 9
+    Info (12023): Found entity 1: Testbench File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Testbench.vhdl Line: 7
+Error (10482): VHDL error at RS_regs.vhdl(460): object "output" is used but not declared File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 460
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
+    Error: Peak virtual memory: 4776 megabytes
+    Error: Processing ended: Sun Dec 03 00:20:34 2023
+    Error: Elapsed time: 00:00:07
     Error: Total CPU time (on all processors): 00:00:16
 
 

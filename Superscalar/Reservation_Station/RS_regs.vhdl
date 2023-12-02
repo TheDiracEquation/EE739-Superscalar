@@ -4,6 +4,21 @@ use ieee.numeric_std.all;
 
 --package for reservation station registers
 
+CHECKLIST:
+
+ISSUED -
+OPCODE -
+PC - 
+OPR1 - CHECKED WORKING
+V1 -
+OPR2 - CHECKED WORKING
+V2 -
+IMM9 - 
+CZ -   CHECKED
+VCZ -
+COND -
+READY -
+
 
 package RS_gates is
 --Takes two input addrs and two data. outputs all entries
@@ -44,13 +59,32 @@ package RS_gates is
 
   --Takes two input addrs and two data for write. Output all for read
   component OPR1 is
-    type memory_array_16 is array (0 to 63) of std_logic_vector(15 downto 0);
     port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
+            --WRITE addresses and data
+            A1 : in std_logic_vector(5 downto 0); 
             D1 : in std_logic_vector(15 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(15 downto 0);         
-            output : out memory_array_16);
+            D2 : in std_logic_vector(15 downto 0);
+
+            --READ addresses and data
+            A_in1: in std_logic_vector(5 downto 0);
+            A_in2: in std_logic_vector(5 downto 0);
+            D_out1: out std_logic_vector(15 downto 0);
+            D_out2: out std_logic_vector(15 downto 0);
+
+            --VALID bits from V1
+            V1 : in std_logic_vector(63 downto 0);
+
+            --TAGBUS
+            VT_1 : in std_logic;
+            VT_2 : in std_logic;
+            VT_3 : in std_logic;
+            TAG1 : in std_logic_vector(5 downto 0);
+            TAG2 : in std_logic_vector(5 downto 0);
+            TAG3 : in std_logic_vector(5 downto 0);
+            OPR1 : in std_logic_vector(15 downto 0);
+            OPR2 : in std_logic_vector(15 downto 0);
+            OPR3 : in std_logic_vector(15 downto 0));
   end component OPR1;
 
     --Takes two input addrs and two data. outputs all entries
@@ -66,14 +100,31 @@ package RS_gates is
  --Takes two input addrs and two data for write. Output all for read
   component OPR2 is
     port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
+            --WRITE addresses and data
+            A1 : in std_logic_vector(5 downto 0); 
             D1 : in std_logic_vector(15 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(15 downto 0);         
-            A1_in : in std_logic_vector(5 downto 0);
-            D1_out : out std_logic_vector(2 downto 0);
-            A2_in : in std_logic_vector(5 downto 0);
-            D2_out : out std_logic_vector(2 downto 0));
+            D2 : in std_logic_vector(15 downto 0);
+
+            --READ addresses and data
+            A_in1: in std_logic_vector(5 downto 0);
+            A_in2: in std_logic_vector(5 downto 0);
+            D_out1: out std_logic_vector(15 downto 0);
+            D_out2: out std_logic_vector(15 downto 0);
+
+            --VALID bits from V1
+            V1 : in std_logic_vector(63 downto 0);
+
+            --TAGBUS
+            VT_1 : in std_logic;
+            VT_2 : in std_logic;
+            VT_3 : in std_logic;
+            TAG1 : in std_logic_vector(5 downto 0);
+            TAG2 : in std_logic_vector(5 downto 0);
+            TAG3 : in std_logic_vector(5 downto 0);
+            OPR1 : in std_logic_vector(15 downto 0);
+            OPR2 : in std_logic_vector(15 downto 0);
+            OPR3 : in std_logic_vector(15 downto 0));
   end component OPR2;
 
     --Takes two input addrs and two data. outputs all entries
@@ -194,6 +245,7 @@ architecture behav of BIT1_REG is
 end behav;
 
 -----------------ISSUED--------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -217,6 +269,7 @@ end behav;
   
 
 -------------------OPCODE----------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -249,6 +302,7 @@ architecture behav of OPCODE is
 end behav;
   
 --------------------PC---------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -286,12 +340,32 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity OPR1 is
     port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
+            --WRITE addresses and data
+            A1 : in std_logic_vector(5 downto 0); 
             D1 : in std_logic_vector(15 downto 0);
             A2 : in std_logic_vector(5 downto 0);
             D2 : in std_logic_vector(15 downto 0);
-            TAGBUS : in std_logic_vector(54 downto 0);
-            output : out memory_array_16);
+
+            --READ addresses and data
+            A_in1: in std_logic_vector(5 downto 0);
+            A_in2: in std_logic_vector(5 downto 0);
+            D_out1: out std_logic_vector(15 downto 0);
+            D_out2: out std_logic_vector(15 downto 0);
+
+            --VALID bits from V1
+            V1 : in std_logic_vector(63 downto 0);
+
+            --TAGBUS
+            VT_1 : in std_logic;
+            VT_2 : in std_logic;
+            VT_3 : in std_logic;
+            TAG1 : in std_logic_vector(5 downto 0);
+            TAG2 : in std_logic_vector(5 downto 0);
+            TAG3 : in std_logic_vector(5 downto 0);
+            OPR1 : in std_logic_vector(15 downto 0);
+            OPR2 : in std_logic_vector(15 downto 0);
+            OPR3 : in std_logic_vector(15 downto 0));
+            
             
 end entity OPR1;
 
@@ -299,18 +373,35 @@ architecture behav of OPR1 is
 	type memory_array_16 is array (0 to 63) of std_logic_vector(15 downto 0);
 	signal mem : memory_array_16 := (others => (others => '0'));
 	begin 
-        process(clk,rst,A1,A2,D1,D2)
+        process(clk,rst)
 		begin 
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
-			else
+
+			elsif (rising_edge(clk)) then
 				if(w_enable = '1') then 
-					mem(to_integer(unsigned(A1))) <= D1;
-                    mem(to_integer(unsigned(A2))) <= D2;
+          --WRITE
+          mem(to_integer(unsigned(A1))) <= D1; --TODO set valid bit to 1 and check for issued
+          mem(to_integer(unsigned(A2))) <= D2;
+
+            --TAG CHECKING
+            for i in 0 to 63 loop
+                if (V1(i) = '0') then
+                    if (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG1)) and VT_1 = '1') then             
+                        mem(i) <= OPR1; --TODO set valid bit to 1
+                    elsif (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG2)) and VT_2 = '1') then
+                        mem(i) <= OPR2;
+                    elsif (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG3)) and VT_3 = '1') then   
+                        mem(i) <= OPR3;
+                    end if;
+                end if;
+            end loop;
+
 				end if;
 			end if;
 		end process;
-		output <= mem;
+		D_out1 <= mem(to_integer(unsigned(A_in1)));
+		D_out2 <= mem(to_integer(unsigned(A_in2)));
 end behav;
 
 ------------------------V1-----------------------
@@ -337,34 +428,74 @@ architecture behav of V1 is
 end behav;
 
 -----------------------OPR2-----------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-entity OPR1 is
+entity OPR2 is
     port (clk,rst,w_enable : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
+            --WRITE addresses and data
+            A1 : in std_logic_vector(5 downto 0); 
             D1 : in std_logic_vector(15 downto 0);
             A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic_vector(15 downto 0);         
-            output : out memory_array_16);
-end entity OPR1;
+            D2 : in std_logic_vector(15 downto 0);
 
-architecture behav of OPR1 is
+            --READ addresses and data
+            A_in1: in std_logic_vector(5 downto 0);
+            A_in2: in std_logic_vector(5 downto 0);
+            D_out1: out std_logic_vector(15 downto 0);
+            D_out2: out std_logic_vector(15 downto 0);
+
+            --VALID bits from V1
+            V1 : in std_logic_vector(63 downto 0);
+
+            --TAGBUS
+            VT_1 : in std_logic;
+            VT_2 : in std_logic;
+            VT_3 : in std_logic;
+            TAG1 : in std_logic_vector(5 downto 0);
+            TAG2 : in std_logic_vector(5 downto 0);
+            TAG3 : in std_logic_vector(5 downto 0);
+            OPR1 : in std_logic_vector(15 downto 0);
+            OPR2 : in std_logic_vector(15 downto 0);
+            OPR3 : in std_logic_vector(15 downto 0));
+            
+            
+end entity OPR2;
+
+architecture behav of OPR2 is
 	type memory_array_16 is array (0 to 63) of std_logic_vector(15 downto 0);
 	signal mem : memory_array_16 := (others => (others => '0'));
 	begin 
-        process(clk,rst,A1,A2,D1,D2)
+        process(clk,rst)
 		begin 
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));
-			else
+
+			elsif (rising_edge(clk)) then
 				if(w_enable = '1') then 
-					mem(to_integer(unsigned(A1))) <= D1;
-                    mem(to_integer(unsigned(A2))) <= D2;
+          --WRITE
+          mem(to_integer(unsigned(A1))) <= D1; --TODO set valid bit to 1 and check for issued
+          mem(to_integer(unsigned(A2))) <= D2;
+
+            --TAG CHECKING
+            for i in 0 to 63 loop
+                if (V1(i) = '0') then
+                    if (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG1)) and VT_1 = '1') then             
+                        mem(i) <= OPR1; --TODO set valid bit to 1
+                    elsif (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG2)) and VT_2 = '1') then
+                        mem(i) <= OPR2;
+                    elsif (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG3)) and VT_3 = '1') then   
+                        mem(i) <= OPR3;
+                    end if;
+                end if;
+            end loop;
+
 				end if;
 			end if;
 		end process;
-		output <= mem;
+		D_out1 <= mem(to_integer(unsigned(A_in1)));
+		D_out2 <= mem(to_integer(unsigned(A_in2)));
 end behav;
 
 ------------------------V2-----------------------
@@ -391,6 +522,7 @@ architecture behav of V2 is
 end behav;
 
 -----------------------IMM9-----------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -408,6 +540,7 @@ architecture behav of IMM9 is
 	type memory_array_9 is array (0 to 63) of std_logic_vector(8 downto 0);
 	signal mem : memory_array_9 := (others => (others => '0'));
 	begin 
+
         process(clk,rst,A1,A2,D1,D2,A_in)
 		begin 
 			if(rst = '1') then 
@@ -422,5 +555,70 @@ architecture behav of IMM9 is
 		D_out <= mem(to_integer(unsigned(A_in)));
 end behav;
 
+----------------------CZ--------------------------
+ 
+ library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+entity CZ is
+    port (clk,rst,w_enable : in std_logic;
+            --WRITE addresses and data
+            A1 : in std_logic_vector(5 downto 0); 
+            D1 : in std_logic_vector(1 downto 0);
+            A2 : in std_logic_vector(5 downto 0);
+            D2 : in std_logic_vector(1 downto 0);
 
-  
+            --READ addresses and data
+            A_in1: in std_logic_vector(5 downto 0);
+            A_in2: in std_logic_vector(5 downto 0);
+            D_out1: out std_logic_vector(1 downto 0);
+            D_out2: out std_logic_vector(1 downto 0);
+
+            --VALID bits from VCZ
+            VCZ : in std_logic_vector(63 downto 0);
+
+            --TAGBUS
+            VT_1 : in std_logic;
+            VT_2 : in std_logic;
+            TAG1 : in std_logic_vector(5 downto 0);
+            TAG2 : in std_logic_vector(5 downto 0);
+            CZ1 : in std_logic_vector(1 downto 0);
+            CZ2 : in std_logic_vector(1 downto 0);
+            
+            
+end entity CZ;
+
+architecture behav of CZ is
+	type memory_array_2 is array (0 to 63) of std_logic_vector(1 downto 0);
+	signal mem : memory_array_2 := (others => (others => '0'));
+	begin 
+        process(clk,rst)
+		begin 
+			if(rst = '1') then 
+				mem(0 to 63) <= (others => (others => '0'));
+
+			elsif (rising_edge(clk)) then
+				if(w_enable = '1') then 
+					--WRITE
+					mem(to_integer(unsigned(A1))) <= D1; --TODO set valid bit to 1 and check for issued
+					mem(to_integer(unsigned(A2))) <= D2;
+
+					--TAG CHECKING
+					for i in 0 to 63 loop
+						 if (VCZ(i) = '0') then
+							  if (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG1)) and VT_1 = '1') then             
+									mem(i) <= CZ1; --TODO set valid bit to 1
+							  elsif (to_integer(unsigned(mem(i))) = to_integer(unsigned(TAG2)) and VT_2 = '1') then
+									mem(i) <= CZ2;
+							  end if;
+						 end if;
+					end loop;
+
+				end if;
+			end if;
+		end process;
+		D_out1 <= mem(to_integer(unsigned(A_in1)));
+		D_out2 <= mem(to_integer(unsigned(A_in2)));
+end behav;
+
+
