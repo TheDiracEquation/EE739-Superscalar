@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity int_pipeline is 
     port(
-        controlbits: in std_logic_vector(5 downto 0); --controlbits from control store component for alu operations
+        control: in std_logic_vector(5 downto 0); --controlbits from control store component for alu operations
         ra_data, rb_data, pc_in: in std_logic_vector(15 downto 0);
         imm_data: in std_logic_vector(5 downto 0);
         c_in, z_in: in std_logic;
@@ -16,7 +16,7 @@ architecture behavioural of int_pipeline is
     signal imm_ext, alu_b: std_logic_vector(15 downto 0) := (others => '0');
     signal alu_cout, z_sig, alu_zout: std_logic;
     
-    component extender is
+    component extendimm6 is
         port(input: in std_logic_vector(8 downto 0);
 		  output: out std_logic_vector(15 downto 0));
     end component;
@@ -32,37 +32,37 @@ architecture behavioural of int_pipeline is
 
 begin
 
-proc1: process()
+proc1: process(control, imm_ext, rb_data)
 begin
-    if(control=ada,adc,adz,awc,ndu,ndc,ndz) then
+    if(control(5 downto 4)="00") then
         alu_b <= rb_data;
-    elsif(control=aca,acc,acz,acw,ncu,ncc,ncz) then
+    elsif(control(5 downto 4)="01") then
         alu_b <= not rb_data;
-    elsif(control=adi) then
+    elsif(control(5 downto 4)="10") then
         alu_b <= imm_ext;
     end if;
 end process;
 
-proc2 : process()
+proc2 : process(control,alu_cout,c_in)
 begin
-    if(control=addinstructions) then
+    if(control(1)='1') then
         c_out <= alu_cout;
     else 
         c_out <= c_in;
     end if;
 end process;
 
-proc3 : process()
+proc3 : process(control,alu_zout,z_in)
 begin
-    if(control=add+nand) then --have to add contol signals
+    if(control(0)='1') then --have to add contol signals
         z_out <= alu_zout;
     else
         z_out <= z_in;
     end if;
 end process;
 
-alumap : alu port map(alu_a => ra_data, alu_b => alu_b, c_in => c_in, alu_out => alu_out, z_out => alu_zout, c_out => alu_cout, alu_sel => controlbits() );
-extendermap : extender port map(in => imm_data, out => imm_ext);
+alumap : alu port map(alu_a => ra_data, alu_b => alu_b, c_in => c_in, alu_out => alu_out, z_out => alu_zout, c_out => alu_cout, alu_sel => control(3 downto 2) );
+extendermap : extendimm6 port map(input => imm_data, output => imm_ext);
 
 pc_out <= pc_in;
 
