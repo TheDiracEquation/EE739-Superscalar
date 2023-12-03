@@ -20,7 +20,7 @@ use ieee.numeric_std.all;
 --READY - CHECKED
 
 
-package RS_gates is
+package RS_regs is
 --Takes two input addrs and two data. outputs all entries
     component ISSUED is
     port (clk,rst,w_enable1,w_enable2,w_enable3 : in std_logic;
@@ -214,7 +214,7 @@ package RS_gates is
             output : out std_logic_vector(63 downto 0));
   end component READY;
 
-end package RS_gates;
+end package RS_regs;
 
 
 --------------ONE-BIT-REG----------------
@@ -231,7 +231,7 @@ entity BIT1_REG is
 end entity BIT1_REG;
 
 architecture behav of BIT1_REG is
-    signal data : std_logic_vector(63 downto 0) := (others => '0');
+    signal data : std_logic_vector(63 downto 0) := (others => '1');
 	begin 
 	
 		process(clk,rst)
@@ -270,13 +270,13 @@ entity ISSUED is
 end entity ISSUED;
 
 architecture behav of ISSUED is
-    signal data : std_logic_vector(63 downto 0) := (others => '0');
+    signal data : std_logic_vector(63 downto 0) := (others => '1');
 	begin 
 	
 		process(clk,rst)
 		begin 
 			if(rst = '1') then 
-				data <= (others => '0');
+				data <= (others => '1');
 			elsif rising_edge(clk) then 
 				if(w_enable1 = '1') then 
 					data(to_integer(unsigned(A1))) <= D1;			
@@ -781,14 +781,24 @@ entity READY is
 end entity READY;
 
 architecture behav of READY is
-    component BIT1_REG is 
-    port (clk,rst,w_enable1,w_enable2 : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic;
-				A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic;
-            output : out std_logic_vector(63 downto 0));
-    end component;
+   signal data : std_logic_vector(63 downto 0) := (others => '0');
 	begin 
-		READY_1: BIT1_REG port map (clk, rst, w_enable1,w_enable2, A1, D1, A2, D2, output);
+	
+		process(clk,rst)
+		begin 
+			if(rst = '1') then 
+				data <= (others => '0');
+			elsif rising_edge(clk) then
+				if(w_enable1 = '1') then 
+					data(to_integer(unsigned(A1))) <= D1;			
+				end if;
+				
+				if(w_enable2 = '1') then 
+					data(to_integer(unsigned(A2))) <= D2;			
+				end if;
+				
+			end if;
+		end process;
+		
+		output <= data;
 end behav;
