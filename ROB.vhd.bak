@@ -221,17 +221,7 @@ end behav;
                 
 
 
-       
+            
         
 
--- opcode1=> input_vector(90 downto 87),
--- pc_dec1=> input_vector(86 downto 71),
--- arf_add1=> input_vector(70 downto 68),
--- rrf_add1=> input_vector(67 downto 62),
--- opcode2=> input_vector(61 downto 58),
--- pc_dec2=> input_vector(57 downto 42),
--- arf_add2=> input_vector(41 downto 39),
--- rrf_add2=> input_vector(38 downto 33),
--- dataval=> input_vector(32 downto 16),
--- storeval=> input_vector(15 downto 0),
--- dummyout => output_vector(1 downto 0)
+

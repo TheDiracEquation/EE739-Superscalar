@@ -1,5 +1,5 @@
 
-list = [1]*189
+list = [1]*92
 
 
 
@@ -7,5 +7,11 @@ list = [1]*189
 result = ''.join(str(item) for item in list)
 
 # Print the concatenated string
+print(result)
+print(result)
+print(result)
+print(result)
+print(result)
+print(result)
 print(result)
  

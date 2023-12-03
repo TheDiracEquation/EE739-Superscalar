@@ -35,6 +35,7 @@ type bit16_data_type is array((integer'(2)**8)-1 downto 0) of std_logic_vector(1
 type bit3_data_type is array((integer'(2)**8)-1 downto 0) of std_logic_vector(2 downto 0);
 type bit6_data_type is array((integer'(2)**8)-1 downto 0) of std_logic_vector(5 downto 0);
 type bit1_data_type is array((integer'(2)**8)-1 downto 0) of std_logic;
+type bit2_data_type is array((integer'(2)**8)-1 downto 0) of std_logic_vector(1 downto 0);
 
 
 signal opcode : bit4_data_type;
@@ -44,17 +45,21 @@ signal pc : bit16_data_type;
 signal outputval : bit16_data_type;
 signal storedata : bit16_data_type;
 
+signal CZ : bit2_data_type;
+
 signal arf_dest : bit3_data_type;
 
 signal rrf_dest : bit6_data_type;
 
-signal C , Z , issue, execute: bit1_data_type;
+signal issue, execute: bit1_data_type;
 
 signal stall : std_logic; -- keeps track of stalling of pipeline
  
 signal empty: std_logic := '1'; -- checks if pipeline is empty
 signal full: std_logic := '0';
 
+signal dispatch1,dispatch2 : std_logic := '1';
+signal pipe1_write,pipe2_write,pipe3_write: std_logic := '0';
 
 signal complete: std_logic := '0';
 signal complete_dest: std_logic_vector(2 downto 0) := (others => '0');
@@ -81,15 +86,14 @@ begin
         outputval <= (others => (others => '0'));
         arf_dest <= (others => (others => '0'));
         rrf_dest <= (others => (others => '0'));
-        C <= (others => '0');
-        Z <= (others => '0');
+        CZ <= (others => (others => '0'));
         execute <= (others => '0');
         tail := 0;
         head := 0;
         complete <= '0';
         empty <= '1';
         full <= '0';
-        total <= 0;
+        total := 0;
 		end if;
 		
 		
@@ -102,11 +106,11 @@ begin
                 pc(tail) <= pc_dec1;
                 arf_dest(tail) <= arf_add1;
                 rrf_dest(tail) <= rrf_add1;
-                executed(tail) <= '0';
+                execute(tail) <= '0';
             
                 -- Specially storing the data of store 
                 if (opcode1 = "0101") then
-                address(tail) <= storeval;
+                storedata(tail) <= storeval;
                 end if;
 
                 total := total + 1 ;
@@ -127,7 +131,7 @@ begin
                 pc(tail) <= pc_dec2;
                 arf_dest(tail) <= arf_add2;
                 rrf_dest(tail) <= rrf_add2;
-                executed(tail) <= '0';
+                execute(tail) <= '0';
                 -- Specially storing the data of store 
                 if (opcode2 = "0101") then
                     storedata(tail) <= storeval;
@@ -145,36 +149,34 @@ begin
     end if;
 	end if;
     
-    if(stall = '0' and execute(head) = '1') then
-        if (not(total = size)) then
-            if (head = size-1) then
-                head := 0;
-            end if;
-            if((outputval(head) = arf_dest(head+1))) then
-                if((opcode(head) = "") and (opcode(head+1)="")) then
-                    outputval(head+1) <= outputval(head);
-                elsif(outputval(head) = outputval(head+1)) then
-                    aliasing <= '1';
-                end if;
-                end if;
-            outval1 <= outputval(head);
-            outval2 <= outputval(head+1);
-            dest_arf1 <=  arf_dest(head);
-            dest_arf2 <= arf_dest(head+1);
-            cout1 <= C(head);
-            cout2 <= C(head+1);
-            zout1 <= Z(head);
-            zout2 <= Z(head+1);
-                    
-            head := head+1;
-            total := total + 1;
-        else
-            stall <= '1';
-        end if;
-    end if;
-end if;
-    
-    
+--    if(stall = '0' and execute(head) = '1') then
+--        if (not(total = size)) then
+--            if (head = size-1) then
+--                head := 0;
+--            end if;
+--            if((outputval(head) = arf_dest(head+1))) then
+--                if((opcode(head) = "") and (opcode(head+1)="")) then
+--                    outputval(head+1) <= outputval(head);
+--                elsif(outputval(head) = outputval(head+1)) then
+--                    aliasing <= '1';
+--                end if;
+--                end if;
+--            outval1 <= outputval(head);
+--            outval2 <= outputval(head+1);
+--            dest_arf1 <=  arf_dest(head);
+--            dest_arf2 <= arf_dest(head+1);
+--            cout1 <= C(head);
+--            cout2 <= C(head+1);
+--            zout1 <= Z(head);
+--            zout2 <= Z(head+1);
+--                    
+--            head := head+1;
+--            total := total + 1;
+--        else
+--            stall <= '1';
+--        end if;
+--    end if;
+
 end process instruction_write_process;
 
 -- Process for writing pipeline data into the ROB 
@@ -185,25 +187,22 @@ begin
             if(pipe1_write = '1') then    
                 if (pc(i) = pcpipe1) then
                     outputval(i) <= pipeout1;
-                    C(i) <= pipe1C ;
-                    Z(i) <= pipe1Z;
-                    executed(i) <= '1';
+							CZ(i)<= pipe1CZ;
+                    execute(i) <= '1';
                 end if;
             end if;
             if(pipe2_write = '1') then 
                 if (pc(i) = pcpipe2) then
                     outputval(i) <= pipeout2;
-                    C(i) <= pipe2C ;
-                    Z(i) <= pipe2Z;
-                    executed(i) <= '1';
+						  CZ(i)<= pipe2CZ;
+                    execute(i) <= '1';
                 end if;
             end if;
             if(pipe3_write = '1') then 
                 if (pc(i) = pcpipe3) then
                     outputval(i) <= pipeout3;
-                    C(i) <= pipe3C ;
-                    Z(i) <= pipe3Z;
-                    executed(i) <= '1';
+						  CZ(i)<= pipe3CZ;
+                    execute(i) <= '1';
                 end if;
 				end if;
 			end loop;
@@ -221,17 +220,7 @@ end behav;
                 
 
 
-       
+            
         
 
--- opcode1=> input_vector(90 downto 87),
--- pc_dec1=> input_vector(86 downto 71),
--- arf_add1=> input_vector(70 downto 68),
--- rrf_add1=> input_vector(67 downto 62),
--- opcode2=> input_vector(61 downto 58),
--- pc_dec2=> input_vector(57 downto 42),
--- arf_add2=> input_vector(41 downto 39),
--- rrf_add2=> input_vector(38 downto 33),
--- dataval=> input_vector(32 downto 16),
--- storeval=> input_vector(15 downto 0),
--- dummyout => output_vector(1 downto 0)
+
