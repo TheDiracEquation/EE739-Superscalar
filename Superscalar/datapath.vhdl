@@ -12,9 +12,9 @@ architecture superscalar of datapath is
 
 component fetch
 
-component fetchdecode
+component fetchreg
 
-component decode
+component decode -- ismei instr decode, tag_gen, flag checks, prf, aayega
 
 component rs
 
@@ -23,5 +23,11 @@ component alucontrol
 component int_pipeline
 
 component rob
+
+component lspipeline
+
+component controlstore
+
+--aur kya aayega
   signal: 
 
