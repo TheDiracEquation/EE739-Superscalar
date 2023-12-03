@@ -68,8 +68,7 @@ begin
 				aluinpsel <= "10";
 			else aluinpsel <= "00";
 			end if;
-	end process;
-	
+
 	carryproc : process(opcode,carry,zero)
 		begin
 			if(opcode = "0000" or opcode = "0001") then
@@ -85,8 +84,7 @@ begin
 			else modcflag <= '0';
 			end if;
 		end process;
-		
-	contbits(5 downto 4) <= aluinpsel;
+	contbits(5 downto 4) <= aluinpsel
 	contbits(3 down to 2) <= alusel;
 	contbits(1) <= modcflag;
 	contbits(0) <= modzflag;

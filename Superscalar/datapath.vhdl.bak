@@ -8,7 +8,7 @@ entity datapath is
     );
   end entity;
 
-architecture superscalar of datapath is
+architecture of datapath is
 
 component fetch
 

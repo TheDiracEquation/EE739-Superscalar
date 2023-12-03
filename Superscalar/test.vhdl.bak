@@ -20,16 +20,16 @@ entity OPR1 is
             TAG3 : in std_logic_vector(5 downto 0);
             OPR1 : in std_logic_vector(5 downto 0);
             OPR2 : in std_logic_vector(5 downto 0);
-            OPR3 : in std_logic_vector(5 downto 0)
-				);
+            OPR3 : in std_logic_vector(5 downto 0);
+            
             
 end entity OPR1;
 
 architecture behav of OPR1 is
 	type memory_array_16 is array (0 to 63) of std_logic_vector(15 downto 0);
 	signal mem : memory_array_16 := (others => (others => '0'));
-begin 
-test :process(clk,rst)
+	begin 
+        process(clk,rst)
 		begin 
 			if(rst = '1') then 
 				mem(0 to 63) <= (others => (others => '0'));

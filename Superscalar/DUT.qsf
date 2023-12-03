@@ -61,6 +61,14 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
 set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
+set_global_assignment -name VHDL_FILE tag_gen.vhd
+set_global_assignment -name VHDL_FILE ROB.vhd
+set_global_assignment -name VHDL_FILE PRF.vhd
+set_global_assignment -name VHDL_FILE int_pipeline.vhdl
+set_global_assignment -name VHDL_FILE datamem.vhd
+set_global_assignment -name VHDL_FILE controlalu.vhdl
+set_global_assignment -name VHDL_FILE alu.vhdl
+set_global_assignment -name VHDL_FILE addone.vhd
 set_global_assignment -name VHDL_FILE seq_extender.vhd
 set_global_assignment -name VHDL_FILE se9_16.vhd
 set_global_assignment -name VHDL_FILE se7_16.vhd
