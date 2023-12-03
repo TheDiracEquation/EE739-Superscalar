@@ -23,14 +23,18 @@ use ieee.numeric_std.all;
 package RS_regs is
 --Takes two input addrs and two data. outputs all entries
     component ISSUED is
-    port (clk,rst,w_enable1,w_enable2,w_enable3 : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic;
-				A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic;
-				A3 : in std_logic_vector(5 downto 0);
-            D3 : in std_logic;
-            output : out std_logic_vector(63 downto 0));
+      port (clk,rst,w_enable1,w_enable2,w_enable3,w_enable4,w_enable5 : in std_logic;
+               A1 : in std_logic_vector(5 downto 0);
+               D1 : in std_logic;
+               A2 : in std_logic_vector(5 downto 0);
+               D2 : in std_logic;
+               A3 : in std_logic_vector(5 downto 0);
+               D3 : in std_logic;
+               A4 : in std_logic_vector(5 downto 0);
+               D4 : in std_logic;
+               A5 : in std_logic_vector(5 downto 0);
+               D5 : in std_logic;
+               output : out std_logic_vector(63 downto 0));
   end component ISSUED;
 
 --Takes two input addrs and two data for write. for read, 2 addr.
@@ -206,12 +210,9 @@ package RS_regs is
 
   -- READY = ~issued * V1 * V2 * VC * VZ 
   component READY is
-    port (clk,rst,w_enable1,w_enable2 : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic;
-				A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic;
-            output : out std_logic_vector(63 downto 0));
+   port (clk,rst,w_enable : in std_logic;
+         input : in std_logic_vector(63 downto 0);
+         output : out std_logic_vector(63 downto 0));
   end component READY;
 
 end package RS_regs;
@@ -259,13 +260,17 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity ISSUED is
-    port (clk,rst,w_enable1,w_enable2,w_enable3 : in std_logic;
+    port (clk,rst,w_enable1,w_enable2,w_enable3,w_enable4,w_enable5 : in std_logic;
             A1 : in std_logic_vector(5 downto 0);
             D1 : in std_logic;
 				A2 : in std_logic_vector(5 downto 0);
             D2 : in std_logic;
 				A3 : in std_logic_vector(5 downto 0);
             D3 : in std_logic;
+            A4 : in std_logic_vector(5 downto 0);
+            D4 : in std_logic;
+            A5 : in std_logic_vector(5 downto 0);
+            D5 : in std_logic;
             output : out std_logic_vector(63 downto 0));
 end entity ISSUED;
 
@@ -288,6 +293,14 @@ architecture behav of ISSUED is
 				
 				if(w_enable3 = '1') then 
 					data(to_integer(unsigned(A3))) <= D3;			
+				end if;
+
+            if(w_enable4 = '1') then 
+					data(to_integer(unsigned(A4))) <= D4;			
+				end if;
+
+            if(w_enable5 = '1') then 
+					data(to_integer(unsigned(A5))) <= D5;			
 				end if;
 			end if;
 		end process;
@@ -772,11 +785,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity READY is
-    port (clk,rst,w_enable1,w_enable2 : in std_logic;
-            A1 : in std_logic_vector(5 downto 0);
-            D1 : in std_logic;
-				A2 : in std_logic_vector(5 downto 0);
-            D2 : in std_logic;
+    port (clk,rst,w_enable : in std_logic;
+            input : in std_logic_vector(63 downto 0);
             output : out std_logic_vector(63 downto 0));
 end entity READY;
 
@@ -789,14 +799,9 @@ architecture behav of READY is
 			if(rst = '1') then 
 				data <= (others => '0');
 			elsif rising_edge(clk) then
-				if(w_enable1 = '1') then 
-					data(to_integer(unsigned(A1))) <= D1;			
+				if(w_enable = '1') then 
+					data <= input;		
 				end if;
-				
-				if(w_enable2 = '1') then 
-					data(to_integer(unsigned(A2))) <= D2;			
-				end if;
-				
 			end if;
 		end process;
 		

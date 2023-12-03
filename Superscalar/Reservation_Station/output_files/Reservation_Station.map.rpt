@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Reservation_Station
-Sun Dec 03 04:58:31 2023
+Mon Dec 04 00:26:54 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -10,8 +10,7 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Port Connectivity Checks: "OPR1:add_instance"
-  6. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Messages
 
 
 
@@ -38,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sun Dec 03 04:58:31 2023           ;
+; Analysis & Synthesis Status        ; Failed - Mon Dec 04 00:26:54 2023           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Reservation_Station                         ;
 ; Top-level Entity Name              ; DUT                                         ;
@@ -159,71 +158,57 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "OPR1:add_instance"                                                                                                                                         ;
-+-----------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port      ; Type    ; Severity         ; Details                                                                                                                                      ;
-+-----------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; w_enable  ; Unknown ; Critical Warning ; Named port was not declared by the instantiated entity                                                                                       ;
-; w_enable1 ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; w_enable2 ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; vt_1      ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; vt_2      ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; vt_3      ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-+-----------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
-
-
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sun Dec 03 04:58:24 2023
+    Info: Processing started: Mon Dec 04 00:26:47 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Reservation_Station -c Reservation_Station
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file reservation_station.vhdl
+    Info (12022): Found design unit 1: Reservation_Station-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl Line: 53
+    Info (12023): Found entity 1: Reservation_Station File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl Line: 6
 Info (12021): Found 27 design units, including 13 entities, in source file rs_regs.vhdl
-    Info (12022): Found design unit 1: RS_gates File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 23
-    Info (12022): Found design unit 2: BIT1_REG-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 233
-    Info (12022): Found design unit 3: ISSUED-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 272
-    Info (12022): Found design unit 4: OPCODE-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 317
-    Info (12022): Found design unit 5: PC-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 361
-    Info (12022): Found design unit 6: OPR1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 422
-    Info (12022): Found design unit 7: V1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 477
-    Info (12022): Found design unit 8: OPR2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 526
-    Info (12022): Found design unit 9: V2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 579
-    Info (12022): Found design unit 10: IMM9-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 608
-    Info (12022): Found design unit 11: CZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 664
-    Info (12022): Found design unit 12: VCZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 715
-    Info (12022): Found design unit 13: COND-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 744
-    Info (12022): Found design unit 14: READY-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 783
-    Info (12023): Found entity 1: BIT1_REG File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 224
-    Info (12023): Found entity 2: ISSUED File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 261
-    Info (12023): Found entity 3: OPCODE File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 305
-    Info (12023): Found entity 4: PC File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 349
-    Info (12023): Found entity 5: OPR1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 391
-    Info (12023): Found entity 6: V1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 468
-    Info (12023): Found entity 7: OPR2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 495
-    Info (12023): Found entity 8: V2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 570
-    Info (12023): Found entity 9: IMM9 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 597
-    Info (12023): Found entity 10: CZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 636
-    Info (12023): Found entity 11: VCZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 706
-    Info (12023): Found entity 12: COND File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 732
-    Info (12023): Found entity 13: READY File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 774
-Info (12021): Found 2 design units, including 1 entities, in source file dut.vhdl
-    Info (12022): Found design unit 1: DUT-DutWrap File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 12
-    Info (12023): Found entity 1: DUT File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 7
+    Info (12022): Found design unit 1: RS_regs File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 23
+    Info (12022): Found design unit 2: BIT1_REG-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 230
+    Info (12022): Found design unit 3: ISSUED-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 269
+    Info (12022): Found design unit 4: OPCODE-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 314
+    Info (12022): Found design unit 5: PC-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 358
+    Info (12022): Found design unit 6: OPR1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 419
+    Info (12022): Found design unit 7: V1-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 474
+    Info (12022): Found design unit 8: OPR2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 523
+    Info (12022): Found design unit 9: V2-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 576
+    Info (12022): Found design unit 10: IMM9-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 605
+    Info (12022): Found design unit 11: CZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 661
+    Info (12022): Found design unit 12: VCZ-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 712
+    Info (12022): Found design unit 13: COND-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 741
+    Info (12022): Found design unit 14: READY-behav File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 777
+    Info (12023): Found entity 1: BIT1_REG File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 221
+    Info (12023): Found entity 2: ISSUED File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 258
+    Info (12023): Found entity 3: OPCODE File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 302
+    Info (12023): Found entity 4: PC File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 346
+    Info (12023): Found entity 5: OPR1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 388
+    Info (12023): Found entity 6: V1 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 465
+    Info (12023): Found entity 7: OPR2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 492
+    Info (12023): Found entity 8: V2 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 567
+    Info (12023): Found entity 9: IMM9 File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 594
+    Info (12023): Found entity 10: CZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 633
+    Info (12023): Found entity 11: VCZ File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 703
+    Info (12023): Found entity 12: COND File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 729
+    Info (12023): Found entity 13: READY File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/RS_regs.vhdl Line: 771
 Info (12021): Found 2 design units, including 1 entities, in source file testbench.vhdl
     Info (12022): Found design unit 1: Testbench-Behave File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Testbench.vhdl Line: 9
     Info (12023): Found entity 1: Testbench File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Testbench.vhdl Line: 7
-Info (12127): Elaborating entity "DUT" for the top level hierarchy
-Info (12128): Elaborating entity "OPR1" for hierarchy "OPR1:add_instance" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 38
-Error (12002): Port "w_enable" does not exist in macrofunction "add_instance" File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/DUT.vhdl Line: 38
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 2 warnings
-    Error: Peak virtual memory: 4799 megabytes
-    Error: Processing ended: Sun Dec 03 04:58:31 2023
+Error (10482): VHDL error at Reservation_Station.vhdl(60): object "ISSUED_D1" is used but not declared File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl Line: 60
+Error (10482): VHDL error at Reservation_Station.vhdl(60): object "ISSUED_D2" is used but not declared File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl Line: 60
+Error (10482): VHDL error at Reservation_Station.vhdl(60): object "ISSUED_A3" is used but not declared File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl Line: 60
+Error (10482): VHDL error at Reservation_Station.vhdl(60): object "ISSUED_D3" is used but not declared File: C:/Users/ksath/Documents/EE739-Superscalar/Superscalar/Reservation_Station/Reservation_Station.vhdl Line: 60
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 4 errors, 1 warning
+    Error: Peak virtual memory: 4776 megabytes
+    Error: Processing ended: Mon Dec 04 00:26:54 2023
     Error: Elapsed time: 00:00:07
     Error: Total CPU time (on all processors): 00:00:17
 
