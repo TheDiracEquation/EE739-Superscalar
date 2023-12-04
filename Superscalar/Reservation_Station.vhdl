@@ -45,6 +45,8 @@ end entity Reservation_Station;
 architecture behav of Reservation_Station is
 	signal mem ;
 	begin 
+
+	--WHERE OUTPUT
 	
 	ISSUED_ : ISSUED port map (clk, rst, issued_WE1,issued_WE2,issued_WE3,  ISSUED_A1,ISSUED_D1,ISSUED_A2,ISSUED_D2,ISSUED_A3,ISSUED_D3,ISSUED_op);
 	OPCODE_ : OPCODE port map (clk, rst, opcode_WE1, opcode_WE2,OPCODE_A1,OPCODE_D1,OPCODE_A2,OPCODE_D2,OPCODE_Ain1,OPCODE_Ain2,OPCODE_Dout1,OPCODE_Dout2);
