@@ -12,42 +12,42 @@
 # 
 # vcom -93 -work work {C:/Users/Kartik U C/Documents/GitHub/EE739-Superscalar/DUT.vhdl}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:03:09 on Dec 03,2023
+# Start time: 05:52:04 on Dec 04,2023
 # vcom -reportprogress 300 -93 -work work C:/Users/Kartik U C/Documents/GitHub/EE739-Superscalar/DUT.vhdl 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling entity DUT
 # -- Compiling architecture DutWrap of DUT
-# End time: 20:03:09 on Dec 03,2023, Elapsed time: 0:00:00
+# End time: 05:52:04 on Dec 04,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {C:/Users/Kartik U C/Documents/GitHub/EE739-Superscalar/robtest.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:03:09 on Dec 03,2023
+# Start time: 05:52:04 on Dec 04,2023
 # vcom -reportprogress 300 -93 -work work C:/Users/Kartik U C/Documents/GitHub/EE739-Superscalar/robtest.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling entity robtest
 # -- Compiling architecture behav of robtest
-# End time: 20:03:09 on Dec 03,2023, Elapsed time: 0:00:00
+# End time: 05:52:04 on Dec 04,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vcom -93 -work work {C:/Users/Kartik U C/Documents/GitHub/EE739-Superscalar/Testbench.vhdl}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:03:09 on Dec 03,2023
+# Start time: 05:52:04 on Dec 04,2023
 # vcom -reportprogress 300 -93 -work work C:/Users/Kartik U C/Documents/GitHub/EE739-Superscalar/Testbench.vhdl 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling entity Testbench
 # -- Compiling architecture Behave of Testbench
-# End time: 20:03:09 on Dec 03,2023, Elapsed time: 0:00:00
+# End time: 05:52:04 on Dec 04,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm -L rtl_work -L work -voptargs="+acc"  Testbench
 # vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm -L rtl_work -L work -voptargs=""+acc"" Testbench 
-# Start time: 20:03:09 on Dec 03,2023
+# Start time: 05:52:04 on Dec 04,2023
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -63,48 +63,12 @@
 # run -all
 # ** Note: SUCCESS, all tests passed.
 #    Time: 304 ns  Iteration: 0  Instance: /testbench
-#  Trace back: list element in braces followed by "text" instead of space
-#     while executing
-# "lindex $icon 0"
-#     (procedure "selIcon" line 2)
-#     invoked from within
-# "selIcon .main_pane.objects.interior.cs.body.tree {S80Lvy V8oKvy T03Azy -1 0 0 0 0} {{000} {000} {000} {000} {000} {000} {000} {000} {000} {000} {000} ..."
-#     (in namespace inscope "::QObjects" script line 1)
-#     invoked from within
-# "namespace inscope ::QObjects {selIcon .main_pane.objects.interior.cs.body.tree {S80Lvy V8oKvy T03Azy -1 0 0 0 0} {{000} {000} {000} {000} {000} {000} ..."
-#     ("uplevel" body line 1)
-#     invoked from within
-# "uplevel "#0" $cmd"
-#     (object "::.main_pane.objects.interior.cs.body.tree" method "::vsimwidgets::Hierarchy::_evalCmd" body line 45)
-#     invoked from within
-# "_evalCmd $itk_option(-iconcommand) $node -icon $icon"
-#     (object "::.main_pane.objects.interior.cs.body.tree" method "::vsimwidgets::Hierarchy::_iconSelect" body line 7)
-#     invoked from within
-# "_iconSelect $idx $ident"
-#     ("default" arm line 3)
-#     invoked from within
-# "switch -exact $ident {
-# 		"" {
-# 		    # Ignore this which means the mouse is over
-# 		    # nothing identifiable
-# 		}
-# 		expand {
-# 		    # Already handled (s..."
-#     (object "::.main_pane.objects.interior.cs.body.tree" method "::vsimwidgets::Hierarchy::_buttonRelease1" body line 15)
-#     invoked from within
-# "::.main_pane.objects.interior.cs.body.tree _buttonRelease1 .main_pane.objects.interior.cs.body.tree.lwchildsite.clipper.canvas.sfchildsite.col1 130 18..."
-#     (in namespace inscope "::vsimwidgets::Hierarchy" script line 1)
-#     invoked from within
-# "namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.objects.interior.cs.body.tree _buttonRelease1 .main_pane.objects.interior.cs.body.tree.lwchil..."
-#     (command bound to event)
-#    <2:C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/tk8.6/bgerror.tcl:106: ::tkerror {list element in braces followed by "text" instead of space}
-#    <1:eval:1: ::tk::dialog::error::bgerror {list element in braces followed by "text" instead of space}
+add wave -position end  sim:/testbench/dut_instance/add_instance/opcode
 restart
 run
 # GetModuleFileName: The specified module could not be found.
 # 
 # 
-# A time value could not be extracted from the current line
-# A time value could not be extracted from the current line
-# End time: 20:04:33 on Dec 03,2023, Elapsed time: 0:01:24
+add wave -position end  sim:/testbench/dut_instance/add_instance/clk
+# End time: 06:34:37 on Dec 04,2023, Elapsed time: 0:42:33
 # Errors: 0, Warnings: 0

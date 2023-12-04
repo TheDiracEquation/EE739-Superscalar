@@ -39,27 +39,28 @@ type bit1_data_type is array((integer'(2)**8)-1 downto 0) of std_logic;
 type bit2_data_type is array((integer'(2)**8)-1 downto 0) of std_logic_vector(1 downto 0);
 
 
-signal opcode : bit4_data_type;
+signal opcode : bit4_data_type := (others => (others => '0'));
 
-signal pc : bit16_data_type;
+signal pc : bit16_data_type := (others => (others => '0'));
 
-signal outputval : bit16_data_type;
-signal storedata : bit16_data_type;
+signal outputval : bit16_data_type := (others => (others => '0'));
+signal storedata : bit16_data_type :=(others => (others => '0'));
 
-signal CZ : bit2_data_type;
+signal CZ : bit2_data_type := (others => (others => '0'));
 
-signal arf_dest : bit3_data_type;
+signal arf_dest : bit3_data_type := (others => (others => '0'));
 
-signal rrf_dest : bit6_data_type;
+signal rrf_dest : bit6_data_type := (others => (others => '0'));
 
-signal issue, execute: bit1_data_type;
+signal issue, execute: bit1_data_type :=(others => '0');
 
-constant stall : std_logic := '0'; -- keeps track of stalling of pipeline
+signal stall : std_logic := '0'; -- keeps track of stalling of pipeline
  
 signal empty: std_logic := '1'; -- checks if pipeline is empty
 signal full: std_logic := '0';
 
-constant dispatch1,dispatch2 : std_logic := '1';
+signal dispatch1  :  std_logic := '1';
+signal dispatch2 : std_logic := '0';
 signal pipe1_write,pipe2_write,pipe3_write: std_logic := '0';
 
 signal complete: std_logic := '0';
@@ -71,10 +72,10 @@ begin
     
 
 -- process for writing instructions from dispatch
-instruction_write_process : process(clk,rst)
+instruction_write_process : process(clk,rst,opcode1, opcode2,pc_dec1, pc_dec2,arf_add1, arf_add2,rrf_add1, rrf_add2,dataval,storeval)
 
-variable total: integer := 0; -- keeps a count of total number of instructions in the ROB
-variable head, tail: integer := 0; -- head gives pointer to the instruction which has execute 1 in-order
+variable total: integer := 1; -- keeps a count of total number of instructions in the ROB
+variable head, tail: integer := 1; -- head gives pointer to the instruction which has execute 1 in-order
 -- tail gives pointer to the next free space for instructions
 -- we donot erase instructions from the ROB , rather the tail and head are cyclically rotated throughout the ROB
 -- while overwriting already retired instructions, and total ensures that incase we have all non-retirable instruction
@@ -101,9 +102,9 @@ begin
 		end if;
 		
 		
-   --   if(rising_edge(clk)) then -- synchronous
---        if(stall = '0' and not (tail = size - 1)) then -- if the ROB is not stalled and the open entry is not at the last
---            if(dispatch1 = '1') then
+     -- if(rising_edge(clk)) then -- synchronous
+       if(stall = '0' and not (tail = size - 1)) then -- if the ROB is not stalled and the open entry is not at the last
+            if(dispatch1 = '1') then
                 
                 -- Putting the respective values of instruction 1 in ROB
                 opcode(tail) <= opcode1;
@@ -149,8 +150,8 @@ begin
                         tail := tail + 1;
                     end if;
                 end if;
---            end if;
---    end if;
+            end if;
+   end if;
 	--end if;
     
 --    if(stall = '0' and execute(head) = '1') then
