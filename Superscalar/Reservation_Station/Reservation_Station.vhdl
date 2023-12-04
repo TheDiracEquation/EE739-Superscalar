@@ -49,9 +49,6 @@ entity Reservation_Station is
             
             
 
-	SCHIZOPHRENIC EPISODE : YOU JUST GAVE ISSUED 5 WRITE PORTS. WAKE UP TOMORROW, BHAI ISMEI OUTPUT KAHA HAI BHAI
-
-
 end entity Reservation_Station;
 
 architecture behav of Reservation_Station is
