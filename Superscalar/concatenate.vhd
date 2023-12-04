@@ -1,6 +1,6 @@
 -- THIS COMPONENT CONCATENATES THE 8 BIT DATA WE GET FROM THE 
 -- INSTRUCTION MEMORY IN TO THE 16 BIT INSTRUCTIONS
-
+--why
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
